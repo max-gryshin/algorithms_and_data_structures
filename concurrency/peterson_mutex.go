@@ -1,12 +1,10 @@
-package main
+package concurrency
 
-import (
-	atomic2 "go.uber.org/atomic"
-)
+import "go.uber.org/atomic"
 
 type PetersonMutex struct {
-	want    [2]atomic2.Bool
-	waiting atomic2.Int64
+	want    [2]atomic.Bool
+	waiting atomic.Int64
 }
 
 func (pm *PetersonMutex) Lock(threadId int64) {

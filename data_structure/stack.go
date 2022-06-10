@@ -1,4 +1,4 @@
-package main
+package data_structure
 
 type Link struct {
 	key  int
