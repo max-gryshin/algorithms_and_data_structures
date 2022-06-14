@@ -4,36 +4,36 @@ import (
 	"math/big"
 )
 
-const e = 3
-const k = 2
+const exp = 65537
 
+// Prime number
+// e < f
+var e = big.NewInt(exp) // public exponent
+var bigOne = big.NewInt(1)
+var bigOneNeg = big.NewInt(-1)
+
+// RSA simple implementation RSA algorithm
+// f = (p-1)*(q-1)
+// d = (k*f(n)+1)/e
 type RSA struct {
-	p       big.Int
-	q       big.Int
-	f       *big.Int
-	n       *big.Int
-	e       *big.Int
-	k       big.Int
-	private *big.Int
+	p               big.Int
+	q               big.Int
+	f               *big.Int
+	n               *big.Int
+	privateExponent *big.Int
 }
 
 func NewRSA(p big.Int, q big.Int) *RSA {
-	np := p
-	nq := q
-	fp := p
-	fq := q
-	n := p.Mul(&np, &nq)
-	f := fp.Sub(&fp, big.NewInt(1)).Mul(&fp, fq.Sub(&fq, big.NewInt(1)))
-	priv := *big.NewInt(k)
+	np, nq, fp, fq := p, q, p, q
+	f := fp.Sub(&fp, bigOne).Mul(&fp, fq.Sub(&fq, bigOne))
+	e1 := big.NewInt(exp)
 
 	return &RSA{
-		p:       p,
-		q:       q,
-		n:       n,
-		f:       f,
-		e:       big.NewInt(e),
-		k:       *big.NewInt(k),
-		private: priv.Mul(&priv, f).Add(&priv, big.NewInt(1)).Div(&priv, big.NewInt(e)),
+		p:               p,
+		q:               q,
+		n:               p.Mul(&np, &nq),
+		f:               f,
+		privateExponent: e1.Exp(e1, bigOneNeg, f),
 	}
 }
 
@@ -46,17 +46,19 @@ func (r *RSA) N() *big.Int {
 }
 
 func (r *RSA) Pub() (*big.Int, *big.Int) {
-	return r.e, r.N()
+	return e, r.n
 }
 
 func (r *RSA) Private() *big.Int {
-	return r.private
+	return r.privateExponent
 }
 
-func (r *RSA) Encrypt(m big.Int) *big.Int {
-	return m.Exp(&m, r.e, r.N())
+// Encrypt given message
+// must be less than n
+func (r *RSA) Encrypt(m *big.Int) *big.Int {
+	return m.Exp(m, e, r.n)
 }
 
 func (r *RSA) Decrypt(c *big.Int) *big.Int {
-	return c.Exp(c, r.private, r.N())
+	return c.Exp(c, r.privateExponent, r.n)
 }
