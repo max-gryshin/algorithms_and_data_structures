@@ -1,14 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
-
-func main() {
-	a := []int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7}
-	heapSort(&a)
-	fmt.Println(a)
-}
+package sort
 
 func left(i int) int { return 2 * i }
 
@@ -38,12 +28,12 @@ func maxHeapify(a *[]int, i int, heapSize int) {
 	}
 }
 
+// BuildMaxHeap building a non-increasing pyramid
 // Complexity O(n) - linear time
-// building a non-increasing pyramid
 // Property of non-increasing pyramid is that the condition is fulfilled
 // for each node (except of root) with i index
 // A[parent(i)] >= A[i]
-func buildMaxHeap(a *[]int, length int) {
+func BuildMaxHeap(a *[]int, length int) {
 	// we start building a pyramid from the tree leaves
 	// which each of them is pyramid with one element
 	for i := length / 2; i > 0; i-- {
@@ -54,7 +44,7 @@ func buildMaxHeap(a *[]int, length int) {
 // Complexity O(n log n)
 func heapSort(a *[]int) {
 	length := len(*a)
-	buildMaxHeap(a, length)
+	BuildMaxHeap(a, length)
 	for i := length; i > 1; i-- {
 		// The largest element (A[0]) is in the top of the pyramid
 		// So we swap it with the smallest (A[n]) element
