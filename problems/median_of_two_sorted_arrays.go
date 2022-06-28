@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package problems
 
 // todo: make it faster
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
@@ -52,38 +50,5 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	} else {
 		n := (len(startLess) - 1) / 2
 		return float64(startLess[n])
-	}
-}
-
-type SortedArrays struct {
-	n1 []int
-	n2 []int
-}
-
-func main() {
-	sortedArrays := []SortedArrays{
-		{
-			[]int{1, 2},
-			[]int{-1, 3},
-		},
-		{
-			[]int{1},
-			[]int{},
-		},
-		{
-			[]int{1, 3},
-			[]int{2},
-		},
-		{
-			[]int{1, 2, 3},
-			[]int{4, 5, 6},
-		},
-		{
-			[]int{1, 3},
-			[]int{2, 7},
-		},
-	}
-	for _, arr := range sortedArrays {
-		fmt.Println(findMedianSortedArrays(arr.n1, arr.n2))
 	}
 }

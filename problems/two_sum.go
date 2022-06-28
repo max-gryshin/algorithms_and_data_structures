@@ -1,4 +1,4 @@
-package main
+package problems
 
 func twoSum(nums []int, target int) []int {
 	numsLen := len(nums)

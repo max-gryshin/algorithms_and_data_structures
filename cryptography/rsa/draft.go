@@ -1,3 +1,5 @@
+// Package rsa contains
+// draft to show how rsa works generally
 package rsa
 
 import (

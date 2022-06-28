@@ -28,6 +28,24 @@ func maxHeapify(a *[]int, i int, heapSize int) {
 	}
 }
 
+func maxHeapify32(a *[]int32, i int, heapSize int) {
+	l := left(i)
+	r := right(i)
+	var largest int
+	if l <= heapSize && (*a)[l-1] > (*a)[i-1] {
+		largest = l
+	} else {
+		largest = i
+	}
+	if r <= heapSize && (*a)[r-1] > (*a)[largest-1] {
+		largest = r
+	}
+	if largest != i {
+		(*a)[i-1], (*a)[largest-1] = (*a)[largest-1], (*a)[i-1]
+		maxHeapify32(a, largest, heapSize)
+	}
+}
+
 // BuildMaxHeap building a non-increasing pyramid
 // Complexity O(n) - linear time
 // Property of non-increasing pyramid is that the condition is fulfilled
@@ -38,6 +56,13 @@ func BuildMaxHeap(a *[]int, length int) {
 	// which each of them is pyramid with one element
 	for i := length / 2; i > 0; i-- {
 		maxHeapify(a, i, length)
+	}
+}
+
+// BuildMaxHeap32 building a non-increasing pyramid for slice of int32
+func BuildMaxHeap32(a *[]int32, length int) {
+	for i := length / 2; i > 0; i-- {
+		maxHeapify32(a, i, length)
 	}
 }
 
