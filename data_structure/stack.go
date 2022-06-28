@@ -11,7 +11,7 @@ type LinkedList struct {
 	bucket []Link
 }
 
-func (ll *LinkedList) ListInsert(x int) {
+func (ll *LinkedList) Insert(x int) {
 	newLink := Link{
 		key:  x,
 		next: ll.head,
@@ -25,7 +25,7 @@ func (ll *LinkedList) ListInsert(x int) {
 	return
 }
 
-func listDelete(ll *LinkedList) (x int) {
+func Delete(ll *LinkedList) (x int) {
 	ll.bucket = append(ll.bucket[:x], ll.bucket[x+1:]...)
 	return
 }
