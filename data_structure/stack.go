@@ -1,18 +1,18 @@
 package data_structure
 
-type Link struct {
+type DoubleLink struct {
 	key  int
-	prev *Link
-	next *Link
+	prev *DoubleLink
+	next *DoubleLink
 }
 
 type LinkedList struct {
-	head   *Link
-	bucket []Link
+	head   *DoubleLink
+	bucket []DoubleLink
 }
 
 func (ll *LinkedList) Insert(x int) {
-	newLink := Link{
+	newLink := DoubleLink{
 		key:  x,
 		next: ll.head,
 	}

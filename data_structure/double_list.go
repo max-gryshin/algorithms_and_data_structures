@@ -1,7 +1,7 @@
 package data_structure
 
 type DoubleList struct {
-	head *Link
+	head *DoubleLink
 }
 
 func NewDoubleList() *DoubleList {
@@ -11,7 +11,7 @@ func NewDoubleList() *DoubleList {
 }
 
 func (l *DoubleList) Add(v int) {
-	x := Link{
+	x := DoubleLink{
 		key: v,
 	}
 	x.next = l.head
@@ -23,9 +23,7 @@ func (l *DoubleList) Add(v int) {
 }
 
 func (l *DoubleList) Delete(v int) {
-	x := Link{
-		key: v,
-	}
+	x := l.Search(v)
 	if x.prev != nil {
 		x.prev.next = x.next
 	} else {
@@ -36,11 +34,27 @@ func (l *DoubleList) Delete(v int) {
 	}
 }
 
-func (l *DoubleList) Search(v int) Link {
+func (l *DoubleList) Search(v int) DoubleLink {
 	x := l.head
 	for x != nil && x.key != v {
 		x = x.next
 	}
 
 	return *x
+}
+
+func (l *DoubleList) Next() {
+	if l.head.next != nil {
+		l.head = l.head.next
+	}
+}
+
+func (l *DoubleList) Prev() {
+	if l.head.prev != nil {
+		l.head = l.head.prev
+	}
+}
+
+func (l *DoubleList) Current() DoubleLink {
+	return *l.head
 }
