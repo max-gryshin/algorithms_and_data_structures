@@ -6,11 +6,10 @@ type ListNode struct {
 }
 
 func AddNode(headRef *ListNode, v int) *ListNode {
-	n := &ListNode{
-		Key: v,
+	headRef = &ListNode{
+		Key:  v,
+		Next: headRef,
 	}
-	n.Next = headRef
-	headRef = n
 
 	return headRef
 }
@@ -33,7 +32,5 @@ func DeleteNode(headRef *ListNode, v int) {
 }
 
 func NextNode(headRef *ListNode) {
-	if headRef.Next != nil {
-		*headRef = *headRef.Next
-	}
+	*headRef = *headRef.Next
 }
