@@ -73,6 +73,9 @@ func TestSingleList_Delete(t *testing.T) {
 			if ls.Key != v {
 				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, ls.Key)
 			}
+			if ls.Next == nil {
+				break
+			}
 			NextNode(ls)
 		}
 	}
