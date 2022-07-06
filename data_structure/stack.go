@@ -1,7 +1,7 @@
 package data_structure
 
 type DoubleLink struct {
-	key  int
+	Key  int
 	prev *DoubleLink
 	next *DoubleLink
 }
@@ -13,7 +13,7 @@ type LinkedList struct {
 
 func (ll *LinkedList) Insert(x int) {
 	newLink := DoubleLink{
-		key:  x,
+		Key:  x,
 		next: ll.head,
 	}
 	if ll.head != nil {

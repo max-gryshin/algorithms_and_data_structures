@@ -11,14 +11,14 @@ func NewDoubleList() *DoubleList {
 }
 
 func (l *DoubleList) Add(v int) {
-	x := DoubleLink{
-		key: v,
+	x := &DoubleLink{
+		Key:  v,
+		next: l.head,
 	}
-	x.next = l.head
 	if l.head != nil {
-		l.head.prev = &x
+		l.head.prev = x
 	}
-	l.head = &x
+	l.head = x
 	x.prev = nil
 }
 
@@ -36,7 +36,7 @@ func (l *DoubleList) Delete(v int) {
 
 func (l *DoubleList) Search(v int) DoubleLink {
 	x := l.head
-	for x != nil && x.key != v {
+	for x != nil && x.Key != v {
 		x = x.next
 	}
 

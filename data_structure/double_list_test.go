@@ -31,8 +31,8 @@ func TestDoubleList_Add(t *testing.T) {
 		for _, v := range l.n {
 			list.Add(v)
 			link := list.Search(v)
-			if link.next != nil && link.next.key != nextVal {
-				t.Errorf("Not valid Next value in linked list: expected %d, actual %d", nextVal, link.prev.key)
+			if link.next != nil && link.next.Key != nextVal {
+				t.Errorf("Not valid Next value in linked list: expected %d, actual %d", nextVal, link.prev.Key)
 			}
 			nextVal = v
 		}
@@ -48,8 +48,8 @@ func TestDoubleList_Delete(t *testing.T) {
 	}
 	for _, l := range doubleListTestsCurrent {
 		for _, v := range l.v {
-			if list.Current().key != v {
-				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().key)
+			if list.Current().Key != v {
+				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().Key)
 			}
 			list.Delete(v)
 		}
@@ -61,8 +61,8 @@ func TestDoubleList_Current(t *testing.T) {
 	for _, l := range doubleListTests {
 		for _, v := range l.n {
 			list.Add(v)
-			if list.Current().key != v {
-				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().key)
+			if list.Current().Key != v {
+				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().Key)
 			}
 		}
 	}
@@ -77,8 +77,8 @@ func TestDoubleList_Next(t *testing.T) {
 	}
 	for _, l := range doubleListTestsCurrent {
 		for _, v := range l.v {
-			if list.Current().key != v {
-				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().key)
+			if list.Current().Key != v {
+				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().Key)
 			}
 			list.Next()
 		}
@@ -99,8 +99,8 @@ func TestDoubleList_Prev(t *testing.T) {
 	}
 	for _, l := range doubleListTestsCurrent {
 		for _, v := range l.n {
-			if list.Current().key != v {
-				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().key)
+			if list.Current().Key != v {
+				t.Errorf("Not valid current value in linked list: expected %d, actual %d", v, list.Current().Key)
 			}
 			list.Prev()
 		}
