@@ -46,10 +46,24 @@ var palindromes = []struct {
 
 func TestPalindromeNumbers(t *testing.T) {
 	for _, v := range palindromes {
-		res := isPalindrome(v.n)
+		res := isPalindromeOwn(v.n)
 		if res != v.expected {
 			t.Errorf(
-				" the result of isPalindrome(%v) not correct: expected %v, actual %v",
+				" the result of isPalindromeOwn(%v) not correct: expected %v, actual %v",
+				v.n,
+				v.expected,
+				res,
+			)
+		}
+	}
+}
+
+func TestPalindromeNumbersLeetCode(t *testing.T) {
+	for _, v := range palindromes {
+		res := isPalindromeLeetCode(v.n)
+		if res != v.expected {
+			t.Errorf(
+				" the result of isPalindromeLeetCode(%v) not correct: expected %v, actual %v",
 				v.n,
 				v.expected,
 				res,
