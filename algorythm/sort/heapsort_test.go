@@ -19,9 +19,9 @@ func TestHeapSort(t *testing.T) {
 	for _, h := range heapTests {
 		startOrder := make([]int, len(h.n))
 		copy(startOrder, h.n)
-		heapSort(&h.n)
+		HeapSort(&h.n)
 		if !reflect.DeepEqual(h.n, h.expected) {
-			t.Errorf("heapSort(%v): expected %v, actual %v ", startOrder, h.expected, h.n)
+			t.Errorf("HeapSort(%v): expected %v, actual %v ", startOrder, h.expected, h.n)
 		}
 	}
 }

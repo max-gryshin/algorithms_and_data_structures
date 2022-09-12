@@ -67,7 +67,7 @@ func BuildMaxHeap32(a *[]int32, length int) {
 }
 
 // Complexity O(n log n)
-func heapSort(a *[]int) {
+func HeapSort(a *[]int) {
 	length := len(*a)
 	BuildMaxHeap(a, length)
 	for i := length; i > 1; i-- {
