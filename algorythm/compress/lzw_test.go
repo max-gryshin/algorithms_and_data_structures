@@ -19,7 +19,7 @@ func TestCompressLZWest(t *testing.T) {
 	dat, err := os.ReadFile("/home/anduser/projsets/algorithms_and_data_structures/algorythm/compress/lotr_short.txt")
 	check(err)
 	fmt.Printf("size of file before compression: %d kilo bytes", len(dat)/1000)
-	resCompress := CompressLZW(string(dat))
+	resCompress := CompressLZWChunks(string(dat))
 	fmt.Printf("size of compressed text is %d kilo bytes \n", len(resCompress)/1000)
 	start := time.Now()
 	resDecompress := DecompressConcurrentLZW(resCompress)
