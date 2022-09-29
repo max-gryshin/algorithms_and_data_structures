@@ -58,58 +58,29 @@ func DecompressLZW(compressed []int) string {
 	return res
 }
 
-func DecompressConcurrentLZW(compressed []int) string {
-	var code = 256
-	dictionary := make(map[int]string)
-	for i := 0; i < 256; i++ {
-		dictionary[i] = string(rune(i))
+func CompressLZWChunks(s string) [][]int {
+	var result [][]int
+	sBytes := []byte(s)
+	rangeBytes := countRange(len(sBytes))
+	for i := 0; i < len(rangeBytes)-1; i++ {
+		result = append(result, CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]])))
 	}
+	return result
+}
+
+func DecompressConcurrentLZW(compressed [][]int) string {
 	var result string
-	resultMap := make(map[int]string)
-	rangeCompressed := countRange(len(compressed))
-	numGor := len(rangeCompressed) - 1
-	m := sync.Mutex{}
 	wt := sync.WaitGroup{}
-	for i := 0; i < numGor; i++ {
-		compressedCollection := compressed[rangeCompressed[i]:rangeCompressed[i+1]]
+	for _, c := range compressed {
 		wt.Add(1)
-		go func(mut *sync.Mutex, it int, coll []int) {
+		go func(waitGr *sync.WaitGroup, compressedString []int, res string) {
+			result += DecompressLZW(compressedString)
 			defer func() {
 				wt.Done()
 			}()
-			if len(coll) == 0 {
-				fmt.Printf(" goroutine with empty compressed collection %d", it)
-			}
-			var entry string
-			char := string(rune(coll[0]))
-			res := char
-			for _, v := range coll[1:] {
-				m.Lock()
-				if x, ok := dictionary[v]; ok {
-					entry = x
-				} else if v == code {
-					entry = char + char[:1]
-				} else {
-					panic(fmt.Sprintf("Bad compressed element: %d dictionary", v))
-				}
-				res += entry
-				m.Unlock()
-				m.Lock()
-				dictionary[code] = char + entry[:1]
-				m.Unlock()
-				code++
-				char = entry
-			}
-
-			m.Lock()
-			resultMap[it] = res
-			m.Unlock()
-		}(&m, i, compressedCollection)
+		}(&wt, c, result)
 	}
 	wt.Wait()
-	for i := 0; i < numGor; i++ {
-		result += resultMap[i]
-	}
 
 	return result
 }
@@ -117,9 +88,6 @@ func DecompressConcurrentLZW(compressed []int) string {
 func countRange(cLen int) []int {
 	var res []int
 	numCPU := runtime.NumCPU()
-	if cLen >= 20000 {
-		numCPU *= cLen / 40000
-	}
 	res = append(res, 0)
 	count := 0
 	for {
@@ -128,6 +96,10 @@ func countRange(cLen int) []int {
 			break
 		}
 		count += cLen / numCPU
+		if count >= cLen {
+			res = append(res, cLen)
+			break
+		}
 		res = append(res, count)
 	}
 	return res
