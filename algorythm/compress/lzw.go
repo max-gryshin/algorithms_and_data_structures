@@ -58,29 +58,35 @@ func DecompressLZW(compressed []int) string {
 	return res
 }
 
-func CompressLZWChunks(s string) [][]int {
-	var result [][]int
+func CompressLZWChunks(s string) map[int][]int {
+	resultM := make(map[int][]int)
 	sBytes := []byte(s)
 	rangeBytes := countRange(len(sBytes))
 	for i := 0; i < len(rangeBytes)-1; i++ {
-		result = append(result, CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]])))
+		//result = append(result, CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]])))
+		resultM[i] = CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]]))
 	}
-	return result
+	return resultM
 }
 
-func DecompressConcurrentLZW(compressed [][]int) string {
+func DecompressConcurrentLZW(compressed map[int][]int) string {
+	resultMap := make(map[int]string)
 	var result string
 	wt := sync.WaitGroup{}
-	for _, c := range compressed {
+	compressedLen := len(compressed)
+	for k, c := range compressed {
 		wt.Add(1)
-		go func(waitGr *sync.WaitGroup, compressedString []int, res string) {
-			result += DecompressLZW(compressedString)
+		go func(waitGr *sync.WaitGroup, compressedString []int, res map[int]string, i int) {
+			res[i] += DecompressLZW(compressedString)
 			defer func() {
 				wt.Done()
 			}()
-		}(&wt, c, result)
+		}(&wt, c, resultMap, k)
 	}
 	wt.Wait()
+	for i := 0; i < compressedLen; i++ {
+		result += resultMap[i]
+	}
 
 	return result
 }
