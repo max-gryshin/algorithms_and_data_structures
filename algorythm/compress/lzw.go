@@ -1,5 +1,4 @@
 // Package compress
-// Implement by https://habr.com/ru/company/otus/blog/581728
 
 package compress
 
@@ -63,7 +62,6 @@ func CompressLZWChunks(s string) map[int][]int {
 	sBytes := []byte(s)
 	rangeBytes := countRange(len(sBytes))
 	for i := 0; i < len(rangeBytes)-1; i++ {
-		//result = append(result, CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]])))
 		resultM[i] = CompressLZW(string(sBytes[rangeBytes[i]:rangeBytes[i+1]]))
 	}
 	return resultM
