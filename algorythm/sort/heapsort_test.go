@@ -1,6 +1,8 @@
 package sort
 
 import (
+	"math"
+	"math/rand"
 	"reflect"
 	"testing"
 )
@@ -13,6 +15,27 @@ var heapTests = []struct {
 		[]int{4, 1, 3, 2, 16, 9, 10, 14, 8, 7},
 		[]int{1, 2, 3, 4, 7, 8, 9, 10, 14, 16},
 	},
+	{
+		rand.Perm(10),
+		makeRange(0, 9),
+	},
+	{
+		rand.Perm(100),
+		makeRange(0, 99),
+	},
+	{
+		rand.Perm(int(math.Pow(2, 10))),
+		makeRange(0, int(math.Pow(2, 10))-1),
+	},
+	{
+		rand.Perm(int(math.Pow(2, 16))),
+		makeRange(0, int(math.Pow(2, 16))-1),
+	},
+	{
+		rand.Perm(int(math.Pow(2, 28))),
+		makeRange(0, int(math.Pow(2, 28))-1),
+	},
+	// 2 ^ 28 takes about 2 minutes seconds with HeapSort(&h.n) recursive approach
 }
 
 func TestHeapSort(t *testing.T) {
