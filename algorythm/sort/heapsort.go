@@ -16,18 +16,18 @@ func MaxHeapifyRecursive(a []int, i int, heapSize int) {
 	r := right(i)
 	var largest int
 	// we define which element is the largest left, right or parent
-	if l <= heapSize && a[l-1] > a[i-1] {
+	if l <= heapSize && a[l] > a[i] {
 		largest = l
 	} else {
 		largest = i
 	}
-	if r <= heapSize && a[r-1] > a[largest-1] {
+	if r <= heapSize && a[r] > a[largest] {
 		largest = r
 	}
 	// if largest is left or right we swap values
 	if largest != i {
 		// complexity 0(1)
-		a[i-1], a[largest-1] = a[largest-1], a[i-1]
+		a[i], a[largest] = a[largest], a[i]
 		// to support property of non-increasing pyramid
 		MaxHeapifyRecursive(a, largest, heapSize)
 	}
@@ -66,7 +66,7 @@ func MaxHeapify(a []int, i int, heapSize int) {
 func BuildMaxHeap(a []int, length int) {
 	// we start building a pyramid from the tree leaves
 	// which each of them is pyramid with one element
-	for i := length / 2; i > 0; i-- {
+	for i := length / 2; i >= 0; i-- {
 		MaxHeapifyRecursive(a, i, length)
 	}
 }
@@ -108,15 +108,15 @@ func HeapIncreaseKey(a []int, i, k int) ([]int, error) {
 // HeapSort
 // Complexity O(n log n)
 func HeapSort(a []int) {
-	length := len(a)
+	length := len(a) - 1
 	BuildMaxHeap(a, length)
-	for i := length; i > 1; i-- {
+	for i := length; i > 0; i-- {
 		// The largest element (A[0]) is in the top of the pyramid
 		// So we swap it with the smallest (A[n]) element
-		a[0], a[i-1] = a[i-1], a[0]
+		a[0], a[i] = a[i], a[0]
 		// we decrement heap size
 		length--
 		// recovery a property of non-increasing pyramid
-		MaxHeapifyRecursive(a, 1, length)
+		MaxHeapifyRecursive(a, 0, length)
 	}
 }
