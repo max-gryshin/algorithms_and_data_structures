@@ -109,6 +109,11 @@ func MaxHeapInsert(a []int, key int) ([]int, error) {
 	return HeapIncreaseKey(a, len(a), key)
 }
 
+// MinHeapInsert  O(log n)
+func MinHeapInsert(a []int, key int) ([]int, error) {
+	return HeapIncreaseKey(a, len(a), key)
+}
+
 // HeapExtractMax O(log n)
 func HeapExtractMax(a []int) int {
 	if len(a) == 0 {
