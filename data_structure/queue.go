@@ -10,8 +10,7 @@ func NewQueue() *Queue {
 }
 
 func (q *Queue) Enqueue(v int) {
-	var node *ListNode
-	node = AddNode(node, v)
+	node := &ListNode{Key: v}
 	if q.Head == nil {
 		q.Head = node
 	} else {
