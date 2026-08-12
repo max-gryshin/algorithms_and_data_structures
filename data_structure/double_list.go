@@ -4,6 +4,11 @@ type DoubleList struct {
 	head *DoubleLink
 }
 
+type DoubleLink struct {
+	Key        int
+	prev, next *DoubleLink
+}
+
 func NewDoubleList() *DoubleList {
 	return &DoubleList{
 		head: nil,

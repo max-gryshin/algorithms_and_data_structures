@@ -18,7 +18,7 @@ var maxAreaData = []struct {
 
 func TestMaxArea(t *testing.T) {
 	for _, v := range maxAreaData {
-		res := maxArea(v.n)
+		res := maxArea2V2(v.n)
 		if res != v.exp {
 			t.Errorf("error: exected %d, got %d", v.exp, res)
 		}

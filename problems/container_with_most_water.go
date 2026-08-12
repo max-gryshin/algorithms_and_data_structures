@@ -69,3 +69,25 @@ func maxArea2(height []int) int {
 
 	return maxContainer
 }
+
+func maxArea2V2(height []int) int {
+	var area int
+	j := len(height) - 1
+	for i := 0; i < len(height); {
+		length := j - i
+		weight := min(height[i], height[j])
+		currentArea := length * weight
+		if currentArea > area {
+			area = currentArea
+		}
+		if i == j {
+			break
+		}
+		if height[i] >= height[j] {
+			j--
+		} else {
+			i++
+		}
+	}
+	return area
+}

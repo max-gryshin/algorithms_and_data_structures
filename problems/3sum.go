@@ -1,10 +1,8 @@
 package problems
 
-import "algorithms_and_data_structures/algorythm/sort"
-
 func threeSum(nums []int) [][]int {
 	var res [][]int
-	sort.HeapSort(&nums)
+	//sort.HeapSort(&nums)
 	for i, v := range nums {
 		if i > 0 && v == nums[i-1] {
 			continue

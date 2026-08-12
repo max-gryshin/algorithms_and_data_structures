@@ -28,14 +28,41 @@ func reverseList(head *ListNode) *ListNode {
 }
 
 func reverseListGeeks(head *ListNode) *ListNode {
-	var prev *ListNode
-	var curr = head
-	var next *ListNode
-	for curr != nil {
-		next = curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
+	var prev, next *ListNode
+	for head != nil {
+		next = head.Next
+		head.Next = prev
+		prev = head
+		head = next
+	}
+
+	return prev
+}
+
+func reverseListV2(head *ListNode) *ListNode {
+	var rev, next *ListNode
+	for head != nil {
+		next = head.Next
+		head.Next = rev
+		rev = head
+		head = next
+	}
+	return rev
+}
+
+//1 -> 2 -> 3 -> 4 -> nil
+//
+//должно превратиться в
+//
+//4 -> 3 -> 2 -> 1 -> nil
+
+func reverseListV3(head *ListNode) *ListNode {
+	var prev, next *ListNode
+	for head != nil {
+		next = head.Next
+		head.Next = prev
+		prev = head
+		head = next
 	}
 
 	return prev
