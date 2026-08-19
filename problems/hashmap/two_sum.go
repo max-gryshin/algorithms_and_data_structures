@@ -1,24 +1,14 @@
 package hashmap
 
 func twoSum(nums []int, target int) []int {
-	numsLen := len(nums)
-	if numsLen == 2 {
-		return []int{0, 1}
-	}
-	k := numsLen - 1
-	for i := 0; i < k; i++ {
-		for j := i + 1; j < numsLen; j++ {
-			if (nums[i] + nums[j]) == target {
-				return []int{i, j}
-			}
-			if (nums[k] + nums[i]) == target {
-				return []int{k, i}
-			}
-			if (nums[k] + nums[j]) == target {
-				return []int{k, j}
-			}
+	m := make(map[int]int)
+
+	for index, num := range nums {
+		completes := target - num
+		if idx, ok := m[completes]; ok {
+			return []int{index, idx}
 		}
-		k--
+		m[num] = index
 	}
 
 	return nil

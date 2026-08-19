@@ -28,3 +28,25 @@ package prefix_sum
 //   - -10^5 <= nums[i] <= 10^5
 //   - 0 <= left <= right < nums.length
 //   - At most 10^4 calls will be made to sumRange.
+
+type NumArray struct {
+	nums []int
+}
+
+func Constructor(nums []int) NumArray {
+	return NumArray{nums: nums}
+}
+
+func (na *NumArray) SumRange(left int, right int) int {
+	if left > right {
+		return 0
+	}
+	if right > len(na.nums) {
+		return 0
+	}
+	var prefix int
+	for i := left; i <= right; i++ {
+		prefix += na.nums[i]
+	}
+	return prefix
+}

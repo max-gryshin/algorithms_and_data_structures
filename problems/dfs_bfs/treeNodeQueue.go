@@ -10,6 +10,7 @@ type TreeNodeQueue []*TreeNodeQ
 func NewTreeNodeQueue() TreeNodeQueue {
 	return make(TreeNodeQueue, 0)
 }
+
 func (t *TreeNodeQueue) Push(node *TreeNode, depth int) {
 	*t = append(*t, &TreeNodeQ{TreeNode: node, depth: depth})
 }
