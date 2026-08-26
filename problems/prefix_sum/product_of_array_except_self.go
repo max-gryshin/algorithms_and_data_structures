@@ -28,3 +28,19 @@ package prefix_sum
 // Follow up: Can you solve the problem in O(1) extra space complexity?
 // (The output array does not count as extra space for space complexity
 // analysis.)
+
+func productExceptSelf(nums []int) []int {
+	answer := make([]int, 0, len(nums))
+	prefix := 1
+	for i := 0; i < len(nums); i++ {
+		// store values excepting the current (nums[i])
+		answer = append(answer, prefix)
+		prefix *= nums[i]
+	}
+	suffix := 1
+	for i := len(nums) - 1; i >= 0; i-- {
+		answer[i] *= suffix // multiply prefix and suffix
+		suffix *= nums[i]
+	}
+	return answer
+}
