@@ -1,5 +1,10 @@
 package dfs_bfs
 
+import "algorithms_and_data_structures/data_structure"
+
+// 102. Binary Tree Level Order Traversal
+//Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
 func levelOrder(node *TreeNode) [][]int {
 	queue := NewTreeNodeQueue()
 	res := make([][]int, 0)
@@ -20,30 +25,28 @@ func levelOrder(node *TreeNode) [][]int {
 	return res
 }
 
-// LeetCode
-func levelOrderV2(root *TreeNode) [][]int {
-	if root == nil {
+func levelOrderBst(tree *data_structure.Bst) [][]int {
+	if tree == nil {
 		// Nothing to do. Can return an emtpy slice of slice of ints to the parent function
 		return [][]int{}
 	}
 
-	// Create a queue and insert root
-	queue := []*TreeNode{}
-	queue = append(queue, root)
+	// queue and insert root
+	queue := data_structure.NewNodeQueue()
+	queue.Push(tree.Root)
 
-	// Create result slice
-	result := [][]int{}
+	// result slice
+	result := make([][]int, 0)
 
 	// Process as long as queue is not empty
 	for len(queue) > 0 {
 		// Get the current size or length of the queue.
 		// This indicates the total number of nodes that are part of current level
-		sz := len(queue)
-		level := []int{}
-		for i := 0; i < sz; i++ {
-			// Remove a node
-			node := queue[0]
-			queue = queue[1:]
+		currentSize := len(queue)
+		level := make([]int, 0)
+		for i := 0; i < currentSize; i++ {
+			// take and remove a node
+			node := queue.Pop()
 
 			// Visit the node. Here visiting means collecting it into the output array
 			level = append(level, node.Val)
@@ -56,16 +59,8 @@ func levelOrderV2(root *TreeNode) [][]int {
 				queue = append(queue, node.Right)
 			}
 		}
-		// level is filled with one level of nodes' values. Insert this into the final
-		// result
+		// Insert level into the final result
 		result = append(result, level)
 	}
-	// result is ready to be returned
 	return result
 }
-
-//          20
-//         /  \
-//       10    30
-//      / \      \
-//     5  15      40
