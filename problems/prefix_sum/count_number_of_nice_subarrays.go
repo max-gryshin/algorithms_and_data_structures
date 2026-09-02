@@ -26,3 +26,18 @@ package prefix_sum
 //   - 1 <= nums.length <= 50000
 //   - 1 <= nums[i] <= 10^5
 //   - 1 <= k <= nums.length
+
+func countNumberOfNiceSubSubArrays(nums []int, k int) int {
+	var result, oddPrefixCount int
+	prefixCount := make(map[int]int)
+	prefixCount[0] = 1
+	for _, num := range nums {
+		if num%2 == 1 {
+			oddPrefixCount++
+		}
+		result += prefixCount[oddPrefixCount-k]
+		prefixCount[oddPrefixCount]++
+	}
+
+	return result
+}

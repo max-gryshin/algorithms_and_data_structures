@@ -1,5 +1,7 @@
 package prefix_sum
 
+import "testing"
+
 // LC 974. Subarray Sums Divisible by K
 //
 // Given an integer array nums and an integer k, return the number of
@@ -9,6 +11,10 @@ package prefix_sum
 //
 // Example 1:
 //   Input:  nums = [4,5,0,-2,-3,1], k = 5
+// 					[4,9,9, 7, 4,5]
+//					 | |
+//					 %5
+//					[0,]
 //   Output: 7
 //   Explanation: There are 7 subarrays with a sum divisible by k = 5:
 //     [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3],
@@ -23,22 +29,23 @@ package prefix_sum
 //   - -10^4 <= nums[i] <= 10^4
 //   - 2 <= k <= 10^4
 
-func SubArrSumsDivByK(nums []int, k int) int {
-	var result, prefix int
-	remainderMap := make(map[int]int, len(nums))
-	remainderMap[0] = 1
-	for _, num := range nums {
-		prefix += num
-		reminder := prefix % k
-		// normalization of negative reminder
-		if reminder < 0 {
-			reminder += k
-		}
-		// add to result if in remainderMap already has element with the same
-		// reminder - which means there is a subArray with the sum which divisible by k
-		result += remainderMap[reminder]
-		// map stores reminder with the countere
-		remainderMap[reminder]++
+func TestSubArrSumsDivByK(t *testing.T) {
+	table := []struct {
+		nums     []int
+		k        int
+		expected int
+	}{
+		{
+			nums:     []int{4, 5, 0, -2, -3, 1},
+			k:        5,
+			expected: 7,
+		},
 	}
-	return result
+
+	for _, row := range table {
+		res := SubArrSumsDivByK(row.nums, row.k)
+		if res != row.expected {
+			t.Errorf("error expected %d, but got %d", row.expected, res)
+		}
+	}
 }

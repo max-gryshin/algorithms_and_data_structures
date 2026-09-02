@@ -28,7 +28,7 @@ var LengthOfLongestSubstringData = []struct {
 
 func TestLengthOfLongestSubstring(t *testing.T) {
 	for _, i := range LengthOfLongestSubstringData {
-		actual := lengthOfLongestSubstring(i.s)
+		actual := longestSubstring(i.s)
 		if actual != i.n {
 			t.Errorf(
 				" the result of lengthOfLongestSubstring(%v) not correct: expected %v, actual %v",
