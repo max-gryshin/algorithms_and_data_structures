@@ -8,7 +8,7 @@ import "math"
 //      / \      \
 //     5  15      40
 
-// to validate bst we need walk over all elevement going down to the leaf nodes
+// to check is the tree a valid bst, we need to walk over all elements going down to the leaf nodes
 // to check is a current node valid we need to pass a valid range to validation function which
 // executes recursively
 // for the left child node we need to pass range absMin and parent's node value.

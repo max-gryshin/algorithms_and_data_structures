@@ -12,7 +12,13 @@ package sliding_window
 //
 // answer = max(answer, windowSize)
 func LongestRepeatingCharacterReplacement(s string, k int) int {
-	var res, windowSize, maxFrequency, left int
+	var (
+		res        int
+		windowSize int
+		// max frequency of the element that is in the window
+		maxFrequency int
+		left         int
+	)
 	charCounter := make(map[rune]int)
 	runes := []rune(s)
 
@@ -26,9 +32,9 @@ func LongestRepeatingCharacterReplacement(s string, k int) int {
 		// if diff between window size and max frequency > k
 		// then shift left pointer and recalculate window size
 		for windowSize-maxFrequency > k {
+			charCounter[runes[left]]--
 			left++
 			// store counts of characters which are in the window
-			charCounter[runes[left]]--
 			windowSize = right - left + 1
 		}
 		res = max(res, windowSize)

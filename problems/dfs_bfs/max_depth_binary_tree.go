@@ -6,6 +6,14 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+//          20
+//         /  \
+//       10    30
+//      / \      \
+//     5  15      40
+//					\
+//					 50
+
 func MaxDepthBinaryTree(node *TreeNode) int {
 	return depth(node)
 }
@@ -16,8 +24,5 @@ func depth(node *TreeNode) int {
 		return 0
 	}
 
-	left := depth(node.Left)
-	right := depth(node.Right)
-
-	return 1 + max(left, right)
+	return 1 + max(depth(node.Left), depth(node.Right))
 }

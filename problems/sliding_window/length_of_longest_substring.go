@@ -3,9 +3,9 @@ package sliding_window
 // Longest substring without repeating characters
 
 // b | a | b | a |
-
-// a | b | b | a |
-//----------------
+// L	   R
+// b | a | b | b | a |
+// L	       R
 
 // longestSubstring - iterates over the string
 // for each unique character, increase the counter and store its position

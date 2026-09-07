@@ -46,7 +46,7 @@ func TestLevelOrderBst(t *testing.T) {
 	}
 
 	for _, row := range table {
-		res := levelOrderBst(row.bst())
+		res := levelOrderBstV1(row.bst())
 		if len(res) != len(row.expect) {
 			t.Errorf("expected result len %d, but got %d", len(row.expect), len(res))
 		}

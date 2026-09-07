@@ -1,5 +1,20 @@
 package sliding_window
 
+// Example 1:
+//
+// Input: s = "cbaebabacd", p = "abc"
+// Output: [0,6]
+// Explanation:
+// The substring with start index = 0 is "cba", which is an anagram of "abc".
+// The substring with start index = 6 is "bac", which is an anagram of "abc".
+// Example 2:
+//
+// Input: s = "abab", p = "ab"
+// Output: [0,1,2]
+// Explanation:
+// The substring with start index = 0 is "ab", which is an anagram of "ab".
+// The substring with start index = 1 is "ba", which is an anagram of "ab".
+// The substring with start index = 2 is "ab", which is an anagram of "ab".
 func findAnagrams(s, p string) []int {
 	var (
 		res              []int
@@ -25,17 +40,18 @@ func findAnagrams(s, p string) []int {
 		}
 		// calculate window size
 		windowSize = right - left + 1
+		// kep window size no bigger than len of anagram
 		// condition to shift left pointer
 		if windowSize > len(runesP) {
-			ch := runesS[left]
+			leftCharacter := runesS[left]
 			// check if the frequency of the character from left pointer is the same as in anagram
-			if windowFreq[ch] == pFreq[ch] {
+			if windowFreq[leftCharacter] == pFreq[leftCharacter] {
 				matches--
 			}
 			// shift left pointer
 			left++
 			// decrease frequency of the character
-			windowFreq[ch]--
+			windowFreq[leftCharacter]--
 			// decrease window size
 			windowSize--
 		}

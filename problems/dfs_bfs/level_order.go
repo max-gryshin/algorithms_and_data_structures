@@ -3,8 +3,15 @@ package dfs_bfs
 import "algorithms_and_data_structures/data_structure"
 
 // 102. Binary Tree Level Order Traversal
-//Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+// Given the root of a binary tree,
+// return the level order traversal of its nodes' values.
+// (i.e., from left to right, level by level).
 
+//			   [10]
+//			 /	   \
+//		   [7]	   [12]
+//	      /	 \        \
+//	    [6]	  [8]     [14]
 func levelOrder(node *TreeNode) [][]int {
 	queue := NewTreeNodeQueue()
 	res := make([][]int, 0)
@@ -63,4 +70,27 @@ func levelOrderBst(tree *data_structure.Bst) [][]int {
 		result = append(result, level)
 	}
 	return result
+}
+
+func levelOrderBstV1(tree *data_structure.Bst) [][]int {
+	res := make([][]int, 0)
+
+	queue := []*data_structure.Node{tree.Root}
+	for len(queue) > 0 {
+		levelSlice := make([]int, 0)
+		currentSize := len(queue)
+		for i := 0; i < currentSize; i++ {
+			el := queue[0]
+			queue = queue[1:]
+			levelSlice = append(levelSlice, el.Val)
+			if el.Left != nil {
+				queue = append(queue, el.Left)
+			}
+			if el.Right != nil {
+				queue = append(queue, el.Right)
+			}
+		}
+		res = append(res, levelSlice)
+	}
+	return res
 }
