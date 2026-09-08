@@ -73,7 +73,7 @@ func dfs(node *data_structure.Node, p, q int) *data_structure.Node {
 //
 //	 / \
 //	7   4
-func dfsV1(node *data_structure.Node, p, q int) *data_structure.Node {
+func lcaDfsV1(node *data_structure.Node, p, q int) *data_structure.Node {
 	if node == nil {
 		return nil
 	}
