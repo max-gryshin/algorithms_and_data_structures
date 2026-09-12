@@ -19,7 +19,7 @@ func TestReverseList(t *testing.T) {
 			}}}}},
 		},
 	}
-	result := reverseListGeeks(list)
+	result := reverseList(list)
 	for result != nil || reversedList != nil {
 		if result.Val != reversedList.Val {
 			t.Errorf(

@@ -32,7 +32,7 @@ import "algorithms_and_data_structures/data_structure"
 //return right
 
 func lcaBtree(root *data_structure.Node, p, q int) *data_structure.Node {
-	return dfs(root, p, q)
+	return dfsLca(root, p, q)
 }
 
 // DFS-паттерн:
@@ -41,7 +41,7 @@ func lcaBtree(root *data_structure.Node, p, q int) *data_structure.Node {
 // 3. DFS left
 // 4. DFS right
 // 5. combine results
-func dfs(node *data_structure.Node, p, q int) *data_structure.Node {
+func dfsLca(node *data_structure.Node, p, q int) *data_structure.Node {
 	if node == nil {
 		return nil
 	}
@@ -50,8 +50,8 @@ func dfs(node *data_structure.Node, p, q int) *data_structure.Node {
 		return node
 	}
 
-	left := dfs(node.Left, p, q)
-	right := dfs(node.Right, p, q)
+	left := dfsLca(node.Left, p, q)
+	right := dfsLca(node.Right, p, q)
 
 	if left != nil && right != nil {
 		return node
@@ -73,25 +73,3 @@ func dfs(node *data_structure.Node, p, q int) *data_structure.Node {
 //
 //	 / \
 //	7   4
-func lcaDfsV1(node *data_structure.Node, p, q int) *data_structure.Node {
-	if node == nil {
-		return nil
-	}
-
-	if node.Val == p || node.Val == q {
-		return node
-	}
-
-	left := dfs(node.Left, p, q)
-	right := dfs(node.Right, p, q)
-
-	if left != nil && right != nil {
-		return node
-	}
-
-	if left != nil {
-		return left
-	}
-
-	return right
-}
