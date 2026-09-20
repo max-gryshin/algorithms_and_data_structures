@@ -1,18 +1,23 @@
-package concurrency
+package rate_limiter
 
 import (
 	"context"
 	"time"
 )
 
-// RateLimiterLeakyBucket leaky-bucket-like limiter
-type RateLimiterLeakyBucket struct {
+const (
+	DefaultLimit    = 1000
+	DefaultInterval = 1 * time.Second
+)
+
+// LeakyBucket leaky-bucket-like limiter
+type LeakyBucket struct {
 	limiter chan struct{}
 }
 
-func NewRateLimiterLeakyBucket(ctx context.Context, limit int, interval time.Duration) *RateLimiterLeakyBucket {
+func NewLeakyBucket(ctx context.Context, limit int, interval time.Duration) *LeakyBucket {
 	ticker := time.NewTicker(interval / time.Duration(limit))
-	rl := &RateLimiterLeakyBucket{
+	rl := &LeakyBucket{
 		limiter: make(chan struct{}, limit),
 	}
 	go func() {
@@ -37,7 +42,7 @@ func NewRateLimiterLeakyBucket(ctx context.Context, limit int, interval time.Dur
 	return rl
 }
 
-func (r *RateLimiterLeakyBucket) Allow() bool {
+func (r *LeakyBucket) Allow() bool {
 	select {
 	case r.limiter <- struct{}{}:
 		return true

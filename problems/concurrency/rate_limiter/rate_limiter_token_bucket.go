@@ -1,17 +1,17 @@
-package concurrency
+package rate_limiter
 
 import (
 	"context"
 	"time"
 )
 
-type RateLimiterTokenBucket struct {
+type TokenBucket struct {
 	limiter chan struct{}
 }
 
-func NewRateLimiterTokenBucket(ctx context.Context, limit int, interval time.Duration) *RateLimiterTokenBucket {
+func NewTokenBucket(ctx context.Context, limit int, interval time.Duration) *TokenBucket {
 	ticker := time.NewTicker(interval)
-	rl := &RateLimiterTokenBucket{
+	rl := &TokenBucket{
 		limiter: make(chan struct{}, limit),
 	}
 	for i := 0; i < limit; i++ {
@@ -42,7 +42,7 @@ func NewRateLimiterTokenBucket(ctx context.Context, limit int, interval time.Dur
 	return rl
 }
 
-func (rl *RateLimiterTokenBucket) Allow() bool {
+func (rl *TokenBucket) Allow() bool {
 	select {
 	case <-rl.limiter:
 		return true

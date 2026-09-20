@@ -1,27 +1,27 @@
-package concurrency
+package rate_limiter
 
 import (
 	"sync"
 	"time"
 )
 
-type RateLimiterFixedWindow struct {
-	limit       int
+type FixedWindow struct {
 	interval    time.Duration
-	count       int
 	windowStart time.Time
 	mu          sync.Mutex
+	limit       int
+	count       int
 }
 
-func NewFixedWindowLimiter(limit int, interval time.Duration) *RateLimiterFixedWindow {
-	return &RateLimiterFixedWindow{
+func NewFixedWindowLimiter(limit int, interval time.Duration) *FixedWindow {
+	return &FixedWindow{
 		limit:       limit,
 		interval:    interval,
 		windowStart: time.Now(),
 	}
 }
 
-func (r *RateLimiterFixedWindow) Allow() bool {
+func (r *FixedWindow) Allow() bool {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
