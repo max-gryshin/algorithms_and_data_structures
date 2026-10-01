@@ -1,4 +1,4 @@
-package dfs_bfs
+package theory
 
 import (
 	"fmt"
@@ -20,19 +20,19 @@ func topologicalSort(graph map[int][]int) ([]int, error) {
 	dfs = func(id int) error {
 		// mark as visited
 		visited[id] = Gray
-		vertex, ok := graph[id]
+		vertices, ok := graph[id]
 		if !ok {
 			return fmt.Errorf("id %d not found", id)
 		}
-		for _, node := range vertex {
-			state := visited[node]
+		for _, vertex := range vertices {
+			state := visited[vertex]
 			// cycle detected
 			if state == Gray {
-				return fmt.Errorf("cycle detected; cycle id is %d", node)
+				return fmt.Errorf("cycle detected; cycle id is %d", vertex)
 			}
 			// call dfs if not visited yet
 			if state == White {
-				if err := dfs(node); err != nil {
+				if err := dfs(vertex); err != nil {
 					return err
 				}
 			}

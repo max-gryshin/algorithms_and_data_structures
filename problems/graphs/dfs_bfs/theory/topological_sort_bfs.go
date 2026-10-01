@@ -1,4 +1,4 @@
-package dfs_bfs
+package theory
 
 func kahnTopologicalSort(graph map[int][]int) []int {
 	indegree := make(map[int]int)

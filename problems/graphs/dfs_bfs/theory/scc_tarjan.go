@@ -1,4 +1,4 @@
-package dfs_bfs
+package theory
 
 type TarjanSCC struct {
 	n int

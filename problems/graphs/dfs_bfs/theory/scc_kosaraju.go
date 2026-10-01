@@ -1,4 +1,4 @@
-package dfs_bfs
+package theory
 
 // 1st DFS: completes the vertex stack in terms of time, concluding the traversals
 func fillOrder(v int, visited []bool, stack *[]int, adj [][]int) {
@@ -24,6 +24,7 @@ func dfsTranspose(v int, visited []bool, component *[]int, adjTranspose [][]int)
 
 // findSCC Kosaraju finds all SCC with O(V + E)
 func findSCCKosaraju(n int, edges [][]int) [][]int {
+	// adjacency list (outdegrees)
 	adj := make([][]int, n+1)
 	adjTranspose := make([][]int, n+1)
 	// 1. Construction of the direct and transposed graphs

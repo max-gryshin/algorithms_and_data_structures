@@ -31,3 +31,36 @@ package dynamic_programming
 //
 // Категория: unbounded knapsack (монет каждого номинала неограниченно).
 // Рекуррентность: dp[a] = min(dp[a - c] + 1) для каждой монеты c <= a.
+
+// 1. state - number of coins - where summ of them equals amount
+// 2. transition - iterate over array and multiply coin until it reaches amount
+// 3. base - dp[0] = ???
+// 4. traversal order -
+// 5. result -
+func coinChange(coins []int, amount int) int {
+	dp := make(map[int]int)
+	dp[0] = 0
+	for currentAmount := 1; currentAmount <= amount; currentAmount++ {
+		for _, coin := range coins {
+			if currentAmount < coin {
+				continue
+			}
+
+			previousAmount := currentAmount - coin
+			if count, ok := dp[previousAmount]; ok {
+				newCount := count + 1
+				if current, ok := dp[currentAmount]; !ok {
+					dp[currentAmount] = newCount
+				} else {
+					dp[currentAmount] = min(current, newCount)
+				}
+			}
+		}
+	}
+
+	if result, ok := dp[amount]; ok {
+		return result
+	}
+
+	return -1
+}

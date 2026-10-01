@@ -32,3 +32,31 @@ package dynamic_programming
 // Категория: 2D Grid DP.
 // Рекуррентность: dp[i][j] = dp[i-1][j] + dp[i][j-1].
 // Также решается комбинаторно: C(m+n-2, m-1).
+
+func uniquePaths(m int, n int) int {
+	if m < 1 || n < 1 {
+		return 0
+	}
+	if m == 1 && n == 1 {
+		return 1
+	}
+	arrm := make([][]int, m+1)
+	for i := 0; i <= m; i++ {
+		arrm[i] = make([]int, n+1)
+	}
+	return uniquePathsHelper(m, n, arrm)
+}
+
+func uniquePathsHelper(m int, n int, arr [][]int) int {
+	if m < 1 || n < 1 {
+		return 0
+	}
+	if m == 1 && n == 1 {
+		return 1
+	}
+	if arr[m][n] != 0 {
+		return arr[m][n]
+	}
+	arr[m][n] = uniquePathsHelper(m-1, n, arr) + uniquePathsHelper(m, n-1, arr)
+	return arr[m][n]
+}

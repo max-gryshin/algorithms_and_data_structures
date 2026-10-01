@@ -63,13 +63,3 @@ func dfsLca(node *data_structure.Node, p, q int) *data_structure.Node {
 
 	return right
 }
-
-//	   3
-//	  / \
-//	 5   1
-//	/ \ / \
-//
-// 6  2 0  8
-//
-//	 / \
-//	7   4
