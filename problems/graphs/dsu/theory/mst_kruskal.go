@@ -4,29 +4,30 @@ import (
 	"sort"
 )
 
-// Edge представляет ребро графа
+// Edge represents a graph edge
 type Edge struct {
 	Source, Destination int
 	Weight              int
 }
 
-// Graph представляет взвешенный неориентированный граф
+// Graph represents a weighted undirected graph
 type Graph struct {
 	Vertices int
 	Edges    []Edge
 }
 
-// MSTKruskal находит минимальное остовное дерево графа
+// MST - Minimum spanning tree
+// MSTKruskal finds the minimum spanning tree of the graph
 func MSTKruskal(g Graph) []Edge {
-	// A = ∅ (инициализация пустого множества ребер MST)
+	// A = ∅ (initialize empty set of MST edges)
 	var mst []Edge
 
-	// Инициализируем структуру непересекающихся множеств
+	// Initialize disjoint set structure
 	// for each vertex v ∈ G.V: MAKE-SET(v)
 	dsu := NewDSU(g.Vertices)
 
 	// sort the edges of G.E into nondecreasing order by weight w
-	// Делаем копию, чтобы не мутировать исходный граф
+	// Make a copy to avoid mutating the original graph
 	sortedEdges := make([]Edge, len(g.Edges))
 	copy(sortedEdges, g.Edges)
 	sort.Slice(sortedEdges, func(i, j int) bool {
@@ -36,7 +37,7 @@ func MSTKruskal(g Graph) []Edge {
 	// for each edge (u, v) ∈ G.E, taken in nondecreasing order by weight:
 	for _, edge := range sortedEdges {
 		// if FIND-SET(u) ≠ FIND-SET(v)
-		if dsu.Find(edge.Source) != dsu.Find(edge.Destination) {
+		if dsu.FindSet(edge.Source) != dsu.FindSet(edge.Destination) {
 			// A = A ∪ {(u, v)}
 			mst = append(mst, edge)
 			// UNION(u, v)

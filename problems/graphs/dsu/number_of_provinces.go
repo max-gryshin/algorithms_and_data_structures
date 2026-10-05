@@ -6,7 +6,7 @@ import (
 
 func findCircleNum(isConnected [][]int) int {
 	n := len(isConnected)
-	dsu := theory.NewDSU(n)
+	dsu := theory.NewDSU(len(isConnected))
 	res := 0
 
 	for i := 0; i < n; i++ {
@@ -18,7 +18,7 @@ func findCircleNum(isConnected [][]int) int {
 	}
 
 	for i := 0; i < n; i++ {
-		if dsu.Find(i) == i {
+		if dsu.FindSet(i) == i {
 			res++
 		}
 	}
