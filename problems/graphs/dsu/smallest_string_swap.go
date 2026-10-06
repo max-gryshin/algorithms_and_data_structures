@@ -23,20 +23,26 @@ func smallestStringWithSwaps(s string, pairs [][]int) string {
 	dsu := theory.NewDSU(len(runes))
 	dsu.BuildComponents(pairs)
 
+	// store components by root
 	components := make(map[int][]int)
 	for i := range runes {
 		root := dsu.FindSet(i)
 		components[root] = append(components[root], i)
 	}
+
 	res := make([]rune, len(runes))
 	for _, component := range components {
+		// characters of the component
 		subRes := []rune{}
 		for _, idx := range component {
 			subRes = append(subRes, runes[idx])
 		}
 		slices.Sort(subRes)
-		for i, idx := range component {
-			res[idx] = subRes[i]
+		// charIndex - index of the character of the original string
+		// componentIndex - just var with normal order but since subRes sorted we can use it
+		// to take sorted characters consequently
+		for componentIndex, charIndex := range component {
+			res[charIndex] = subRes[componentIndex]
 		}
 	}
 
