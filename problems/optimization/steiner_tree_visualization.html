@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steiner Tree Problem - Интерактивная визуализация</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        #canvas {
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            display: block;
+            margin: 20px 0;
+            cursor: crosshair;
+            background: #f8f9fa;
+        }
+
+        .canvas-info {
+            background: #e8f4f8;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .btn-secondary:hover {
+            background: #bdc3c7;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .stats {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .stat-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-terminal {
+            background: #3498db;
+            border: 2px solid #2980b9;
+        }
+
+        .dot-steiner {
+            background: #2ecc71;
+            border: 2px solid #27ae60;
+        }
+
+        .dot-edge {
+            width: 20px;
+            height: 2px;
+            background: #667eea;
+            border-radius: 1px;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .algorithm-section {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Теория -->
+        <div class="card full-width">
+            <h1>🌐 Steiner Tree Problem - Интерактивная визуализация</h1>
+            <p style="color: #7f8c8d; font-style: italic; margin-bottom: 20px;">
+                Кликните на холст слева, чтобы добавить узлы. Левый клик = терминальный узел (синий),
+                правый клик = промежуточный узел Steiner (зелёный).
+            </p>
+        </div>
+
+        <!-- Визуализация -->
+        <div class="card">
+            <h2>🎨 Визуализация сети</h2>
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-terminal"></div>
+                    <span>Terminal Node (обязательный)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-steiner"></div>
+                    <span>Steiner Node (опциональный)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-edge"></div>
+                    <span>Соединение (MST)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация и управление -->
+        <div class="card">
+            <h2>⚙️ Управление</h2>
+            <div class="controls">
+                <button class="btn-primary" onclick="visualizer.clearAll()">🗑️ Очистить</button>
+                <button class="btn-secondary" onclick="visualizer.loadExample()">📋 Пример</button>
+            </div>
+
+            <h3>Параметры сети</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Терминальные узлы:</span>
+                    <span class="stat-value" id="terminal-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Узлы Steiner:</span>
+                    <span class="stat-value" id="steiner-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Общее количество узлов:</span>
+                    <span class="stat-value" id="total-nodes">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Стоимость MST:</span>
+                    <span class="stat-value" id="mst-cost">0.00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Стоимость активных Steiner узлов:</span>
+                    <span class="stat-value" id="activation-cost">0.00</span>
+                </div>
+                <div class="stat-item" style="border-top: 2px solid #667eea; padding-top: 10px; margin-top: 10px;">
+                    <span class="stat-label" style="font-size: 1.1em;">Общая стоимость:</span>
+                    <span class="stat-value" style="font-size: 1.1em; color: #e74c3c;" id="total-cost">0.00</span>
+                </div>
+            </div>
+
+            <div class="canvas-info">
+                <strong>💡 Подсказка:</strong> Левый клик для добавления терминального узла (синий).
+                Правый клик для добавления узла Steiner (зелёный).
+            </div>
+        </div>
+
+        <!-- Описание задачи -->
+        <div class="card">
+            <h2>📚 О задаче</h2>
+            <p>
+                <strong>Steiner Tree Problem</strong> — это NP-трудная задача оптимизации, которая заключается в поиске минимального по стоимости дерева,
+                соединяющего заданный набор терминальных вершин, с возможностью использования дополнительных промежуточных вершин (узлов Steiner).
+            </p>
+
+            <h3>Параметры:</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>Терминальные узлы</strong> — обязательно соединить все</li>
+                <li><strong>Узлы Steiner</strong> — опциональны, но могут снизить общую стоимость</li>
+                <li><strong>Стоимость ребра</strong> — евклидово расстояние между узлами</li>
+                <li><strong>Стоимость узла</strong> — фиксированная цена активации узла Steiner</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>🎯 Цель:</strong> Выбрать подмножество узлов Steiner и построить минимальное остовное дерево (MST)
+                так, чтобы минимизировать суммарную стоимость = Cost(MST) + Cost(Steiner).
+            </div>
+        </div>
+
+        <!-- Теория алгоритма -->
+        <div class="card">
+            <h2>🤖 Гибридный алгоритм GA + MST</h2>
+
+            <div class="algorithm-section">
+                <h3>Верхний уровень: Генетический алгоритм</h3>
+                <p>
+                    GA ищет оптимальное <strong>подмножество узлов Steiner</strong>, которое нужно активировать.
+                    Геном — это бинарный вектор длины <code>M</code> (количество опциональных узлов).
+                </p>
+            </div>
+
+            <div class="algorithm-section">
+                <h3>Нижний уровень: Алгоритм Крускала (MST)</h3>
+                <p>
+                    Для каждого кандидата (набора активных узлов) Крускал мгновенно строит оптимальное
+                    дерево, используя переиспользуемый DSU (Disjoint Set Union).
+                </p>
+                <p style="margin-top: 10px;">
+                    <strong>Почему это работает:</strong> Нам не нужны сложные операторы скрещивания графов.
+                    MST гарантирует для любого набора узлов оптимальное дерево без циклов.
+                </p>
+            </div>
+
+            <div class="algorithm-section">
+                <h3>Фитнес-функция</h3>
+                <p style="text-align: center; margin-top: 15px; font-size: 1.1em;">
+                    $$\text{Fitness} = \text{Weight}(\text{MST}) + \sum (\text{Стоимость узлов})$$
+                </p>
+                <p style="margin-top: 15px;">
+                    <strong>Цель:</strong> минимизировать Fitness
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class SteinerVisualizer {
+            constructor() {
+                this.canvas = document.getElementById('canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.terminals = [];
+                this.steinerNodes = [];
+                this.nodeActivationCost = 50;
+                this.mstEdges = [];
+
+                this.setupCanvas();
+                this.update();
+            }
+
+            setupCanvas() {
+                this.canvas.addEventListener('click', (e) => this.handleClick(e, false));
+                this.canvas.addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    this.handleClick(e, true);
+                });
+            }
+
+            handleClick(e, isRightClick) {
+                const rect = this.canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (isRightClick) {
+                    this.steinerNodes.push({ x, y, active: true });
+                } else {
+                    this.terminals.push({ x, y });
+                }
+
+                this.update();
+            }
+
+            computeMST() {
+                const allNodes = [...this.terminals, ...this.steinerNodes];
+                if (allNodes.length < 2) {
+                    return { edges: [], cost: 0 };
+                }
+
+                // Создаем ребра со стоимостями (евклидово расстояние)
+                const edges = [];
+                for (let i = 0; i < allNodes.length; i++) {
+                    for (let j = i + 1; j < allNodes.length; j++) {
+                        const dx = allNodes[i].x - allNodes[j].x;
+                        const dy = allNodes[i].y - allNodes[j].y;
+                        const dist = Math.hypot(dx, dy);
+                        edges.push({ i, j, weight: dist });
+                    }
+                }
+
+                // Сортируем по весу
+                edges.sort((a, b) => a.weight - b.weight);
+
+                // Крускал алгоритм с DSU
+                const dsu = new DSU(allNodes.length);
+                const mstEdges = [];
+                let totalCost = 0;
+
+                for (const edge of edges) {
+                    if (dsu.find(edge.i) !== dsu.find(edge.j)) {
+                        dsu.union(edge.i, edge.j);
+                        mstEdges.push(edge);
+                        totalCost += edge.weight;
+                    }
+                }
+
+                return { edges: mstEdges, cost: totalCost };
+            }
+
+            update() {
+                this.draw();
+                this.updateStats();
+            }
+
+            draw() {
+                // Очищаем canvas
+                this.ctx.fillStyle = '#f8f9fa';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Рисуем сетку
+                this.drawGrid();
+
+                const allNodes = [...this.terminals, ...this.steinerNodes];
+                const mstData = this.computeMST();
+
+                // Рисуем MST ребра
+                this.ctx.strokeStyle = '#667eea';
+                this.ctx.lineWidth = 2;
+                for (const edge of mstData.edges) {
+                    const n1 = allNodes[edge.i];
+                    const n2 = allNodes[edge.j];
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(n1.x, n1.y);
+                    this.ctx.lineTo(n2.x, n2.y);
+                    this.ctx.stroke();
+                }
+
+                // Рисуем узлы Steiner
+                for (const node of this.steinerNodes) {
+                    this.drawNode(node.x, node.y, '#2ecc71', '#27ae60', 8);
+                }
+
+                // Рисуем терминальные узлы
+                for (const node of this.terminals) {
+                    this.drawNode(node.x, node.y, '#3498db', '#2980b9', 10);
+                }
+            }
+
+            drawNode(x, y, fillColor, strokeColor, radius) {
+                this.ctx.fillStyle = fillColor;
+                this.ctx.strokeStyle = strokeColor;
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.stroke();
+            }
+
+            drawGrid() {
+                this.ctx.strokeStyle = '#ecf0f1';
+                this.ctx.lineWidth = 1;
+                const gridSize = 50;
+
+                for (let x = 0; x < this.canvas.width; x += gridSize) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x, 0);
+                    this.ctx.lineTo(x, this.canvas.height);
+                    this.ctx.stroke();
+                }
+
+                for (let y = 0; y < this.canvas.height; y += gridSize) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, y);
+                    this.ctx.lineTo(this.canvas.width, y);
+                    this.ctx.stroke();
+                }
+            }
+
+            updateStats() {
+                const mstData = this.computeMST();
+                const activationCost = this.steinerNodes.length * this.nodeActivationCost;
+                const totalCost = mstData.cost + activationCost;
+
+                document.getElementById('terminal-count').textContent = this.terminals.length;
+                document.getElementById('steiner-count').textContent = this.steinerNodes.length;
+                document.getElementById('total-nodes').textContent = this.terminals.length + this.steinerNodes.length;
+                document.getElementById('mst-cost').textContent = mstData.cost.toFixed(2);
+                document.getElementById('activation-cost').textContent = activationCost.toFixed(2);
+                document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+            }
+
+            clearAll() {
+                this.terminals = [];
+                this.steinerNodes = [];
+                this.update();
+            }
+
+            loadExample() {
+                this.clearAll();
+                this.terminals = [
+                    { x: 100, y: 100 },
+                    { x: 400, y: 100 },
+                    { x: 250, y: 400 }
+                ];
+                this.steinerNodes = [
+                    { x: 250, y: 200, active: true },
+                    { x: 175, y: 250, active: true }
+                ];
+                this.update();
+            }
+        }
+
+        class DSU {
+            constructor(n) {
+                this.parent = Array.from({ length: n }, (_, i) => i);
+                this.rank = Array(n).fill(0);
+            }
+
+            find(x) {
+                if (this.parent[x] !== x) {
+                    this.parent[x] = this.find(this.parent[x]);
+                }
+                return this.parent[x];
+            }
+
+            union(x, y) {
+                const rootX = this.find(x);
+                const rootY = this.find(y);
+
+                if (rootX === rootY) return false;
+
+                if (this.rank[rootX] < this.rank[rootY]) {
+                    this.parent[rootX] = rootY;
+                } else if (this.rank[rootX] > this.rank[rootY]) {
+                    this.parent[rootY] = rootX;
+                } else {
+                    this.parent[rootY] = rootX;
+                    this.rank[rootX]++;
+                }
+                return true;
+            }
+        }
+
+        const visualizer = new SteinerVisualizer();
+    </script>
+</body>
+</html>
