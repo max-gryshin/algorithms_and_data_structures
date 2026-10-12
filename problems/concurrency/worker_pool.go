@@ -99,7 +99,6 @@ func RunWorkers(ctx context.Context, jobs <-chan int, workers int) {
 	wgRes.Wait()
 	close(task.Err)
 	wgErr.Wait()
-
 }
 
 func Process(job int) (int, error) {
