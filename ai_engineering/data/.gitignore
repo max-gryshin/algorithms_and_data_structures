@@ -1,0 +1,6 @@
+# Corpora downloaded at run time (cmd/train -download) and training runs (L9–L10):
+# token files, logs and checkpoints are reproducible and never committed.
+downloads/
+runs/
+*.bin
+*.ckpt
