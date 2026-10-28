@@ -600,7 +600,7 @@ go test ./ai_engineering/gpt/... ./ai_engineering/nn ./ai_engineering/autograd -
 | `TestForwardShape` | логиты (B, T, V) для 4 вариантов архитектуры |
 | `TestParamCountMatchesFormula` | `Model.NumParams()` = `Config.Params().Total` (× tied/untied) |
 | `TestRealModelParams` | 124 439 808 / 6 738 415 616 / 8 030 261 248; 12Ld² + Vd; 11 008; KV 512/128 КиБ |
-| `TestInitialLossIsLnV` | |L₀ − ln V| < 0.05 |
+| `TestInitialLossIsLnV` | \|L₀ − ln V\| < 0.05 |
 | `TestOverfitSingleBatch` | loss < 0.05 за 150 шагов (GPT-2- и Llama-стиль) |
 | `TestModelGradCheck` | gradcheck всей модели для 4 вариантов |
 | `TestTiedHeadSharesWeights` | градиент из head в связанную матрицу |
