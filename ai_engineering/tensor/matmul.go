@@ -47,8 +47,9 @@ func MatMul(a, b *Tensor) *Tensor {
 // The kernels below work on raw row-major slices: a is n×k, b is k×p, out is n×p.
 // out must be zeroed by the caller. They exist side by side for the L1 benchmark.
 
-// MatMulNaive is the textbook i-j-k loop. The inner loop walks b down a column
-// (stride p), which jumps across memory and misses the CPU cache.
+// MatMulNaive is the textbook i-j-k loop. Two things slow it down: the inner loop walks b
+// down a column (stride p), and every iteration adds into the same accumulator s, so each
+// FMA waits for the previous one to finish. MatMulNaive4 separates the two effects.
 func MatMulNaive(a, b, out []float32, n, k, p int) {
 	for i := range n {
 		for j := range p {
@@ -57,6 +58,29 @@ func MatMulNaive(a, b, out []float32, n, k, p int) {
 				s += a[i*k+l] * b[l*p+j]
 			}
 			out[i*p+j] = s
+		}
+	}
+}
+
+// MatMulNaive4 keeps the column walk of MatMulNaive but splits the sum into four independent
+// accumulators. It is the L1 control experiment: if it catches up with MatMulIKJ, the naive
+// loop was limited by the FMA dependency chain, not by the cache. The summation order differs
+// from MatMulNaive, so results agree only up to float rounding.
+func MatMulNaive4(a, b, out []float32, n, k, p int) {
+	for i := range n {
+		for j := range p {
+			var s0, s1, s2, s3 float32
+			l := 0
+			for ; l+4 <= k; l += 4 {
+				s0 += a[i*k+l] * b[l*p+j]
+				s1 += a[i*k+l+1] * b[(l+1)*p+j]
+				s2 += a[i*k+l+2] * b[(l+2)*p+j]
+				s3 += a[i*k+l+3] * b[(l+3)*p+j]
+			}
+			for ; l < k; l++ {
+				s0 += a[i*k+l] * b[l*p+j]
+			}
+			out[i*p+j] = (s0 + s1) + (s2 + s3)
 		}
 	}
 }
@@ -106,8 +130,10 @@ func matMulTiledRows(a, b, out []float32, n, k, p, rowFrom, rowTo int) {
 	}
 }
 
-// MatMulParallel splits the rows of out between GOMAXPROCS goroutines, each running
-// the tiled kernel. Rows are independent, so no synchronization on out is needed.
+// MatMulParallel splits the rows of out into equal chunks (multiples of the tile) between at most
+// GOMAXPROCS goroutines, each running the tiled kernel: for n = 128, 512, 1024 that is 2, 8 and 16
+// goroutines. Rows are independent, so no synchronization on out is needed. The split is static,
+// so on a CPU with cores of different speed the slowest goroutine decides the total time.
 func MatMulParallel(a, b, out []float32, n, k, p int) {
 	if n*k*p < 64*64*64 {
 		MatMulIKJ(a, b, out, n, k, p)

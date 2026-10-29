@@ -91,7 +91,7 @@ func TestMatMulKernelsAgree(t *testing.T) {
 		ref := make([]float32, n*p)
 		MatMulNaive(a, b, ref, n, k, p)
 		for name, f := range map[string]func(a, b, out []float32, n, k, p int){
-			"ikj": MatMulIKJ, "tiled": MatMulTiled, "parallel": MatMulParallel,
+			"naive4": MatMulNaive4, "ikj": MatMulIKJ, "tiled": MatMulTiled, "parallel": MatMulParallel,
 		} {
 			out := make([]float32, n*p)
 			f(a, b, out, n, k, p)

@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// go test ./ai_engineering/tensor -bench MatMul -benchtime 3x
+// go test ./ai_engineering/tensor -run xxx -bench MatMul -benchtime 3x -count 5
 // GFLOP/s = 2·n³ / (ns/op).
 func BenchmarkMatMul(b *testing.B) {
 	rng := rand.New(rand.NewPCG(1, 1))
@@ -14,7 +14,8 @@ func BenchmarkMatMul(b *testing.B) {
 		name string
 		f    func(a, b, out []float32, n, k, p int)
 	}{
-		{"naive", MatMulNaive}, {"ikj", MatMulIKJ}, {"tiled", MatMulTiled}, {"parallel", MatMulParallel},
+		{"naive", MatMulNaive}, {"naive4", MatMulNaive4}, {"ikj", MatMulIKJ},
+		{"tiled", MatMulTiled}, {"parallel", MatMulParallel},
 	}
 	for _, n := range []int{128, 512, 1024} {
 		a, bm := Randn(rng, n, n).Data(), Randn(rng, n, n).Data()
