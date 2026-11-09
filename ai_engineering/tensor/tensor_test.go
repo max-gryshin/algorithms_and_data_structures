@@ -90,9 +90,24 @@ func TestMatMulKernelsAgree(t *testing.T) {
 		a, b := Randn(rng, n, k).Data(), Randn(rng, k, p).Data()
 		ref := make([]float32, n*p)
 		MatMulNaive(a, b, ref, n, k, p)
-		for name, f := range map[string]func(a, b, out []float32, n, k, p int){
+		kernels := map[string]func(a, b, out []float32, n, k, p int){
 			"naive4": MatMulNaive4, "ikj": MatMulIKJ, "tiled": MatMulTiled, "parallel": MatMulParallel,
-		} {
+		}
+		if matMulBLAS != nil {
+			kernels["blas"] = matMulBLAS
+		}
+		if matMulMetal != nil {
+			kernels["metal"] = matMulMetal
+			// page-aligned inputs and output take the no-copy path
+			kernels["metal-nocopy"] = func(a, b, out []float32, n, k, p int) {
+				aa, ba, oa := PageAligned(len(a)), PageAligned(len(b)), PageAligned(len(out))
+				copy(aa, a)
+				copy(ba, b)
+				matMulMetal(aa, ba, oa, n, k, p)
+				copy(out, oa)
+			}
+		}
+		for name, f := range kernels {
 			out := make([]float32, n*p)
 			f(a, b, out, n, k, p)
 			if !AllClose(FromSlice(out, n, p), FromSlice(ref, n, p), 1e-4, 1e-4) {

@@ -2,8 +2,10 @@ package tensor
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 	"sync"
+	"unsafe"
 )
 
 // MatMul multiplies (..., n, k) by (..., k, p) and returns (..., n, p).
@@ -147,4 +149,18 @@ func MatMulParallel(a, b, out []float32, n, k, p int) {
 		wg.Go(func() { matMulTiledRows(a, b, out, n, k, p, from, to) })
 	}
 	wg.Wait()
+}
+
+// PageAligned returns a zeroed slice of length n whose first element starts on a memory page
+// and whose capacity is a whole number of pages. MatMulMetal hands such slices to the GPU
+// without copying. The slice is cut from a larger Go allocation, so the GC still owns it.
+func PageAligned(n int) []float32 {
+	page := os.Getpagesize() / 4 // in float32s
+	size := (n + page - 1) / page * page
+	buf := make([]float32, size+page)
+	off := 0
+	if r := int(uintptr(unsafe.Pointer(&buf[0])) % uintptr(page*4)); r != 0 {
+		off = page - r/4
+	}
+	return buf[off : off+n : off+size]
 }

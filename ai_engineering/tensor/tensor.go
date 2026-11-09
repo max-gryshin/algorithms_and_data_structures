@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand/v2"
+	"slices"
 	"strings"
 )
 
@@ -71,11 +72,11 @@ func (t *Tensor) index(idx []int) int {
 // IsContiguous reports whether elements are laid out densely in row-major order.
 func (t *Tensor) IsContiguous() bool {
 	expected := 1
-	for d := len(t.shape) - 1; d >= 0; d-- {
-		if t.shape[d] != 1 && t.strides[d] != expected {
+	for d, v := range slices.Backward(t.shape) {
+		if v != 1 && t.strides[d] != expected {
 			return false
 		}
-		expected *= t.shape[d]
+		expected *= v
 	}
 	return true
 }
@@ -128,7 +129,12 @@ func (t *Tensor) Reshape(shape ...int) *Tensor {
 
 // Transpose swaps dimensions a and b. No data is copied: only shape and strides are swapped.
 func (t *Tensor) Transpose(a, b int) *Tensor {
-	v := &Tensor{data: t.data, shape: clone(t.shape), strides: clone(t.strides), offset: t.offset}
+	v := &Tensor{
+		data:    t.data,
+		shape:   clone(t.shape),
+		strides: clone(t.strides),
+		offset:  t.offset,
+	}
 	v.shape[a], v.shape[b] = v.shape[b], v.shape[a]
 	v.strides[a], v.strides[b] = v.strides[b], v.strides[a]
 	return v
