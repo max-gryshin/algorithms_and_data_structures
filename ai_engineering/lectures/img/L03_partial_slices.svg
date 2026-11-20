@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="410" viewBox="0 0 680 410" font-family="Helvetica, Arial, sans-serif" font-size="13">
+<defs><marker id="a2563eb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="ad97706" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker><marker id="adc2626" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/>
+<text x="200.0" y="24.0" fill="#111827" text-anchor="middle" font-size="15" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Двигаем только x (y = 5)</text>
+<text x="200.0" y="44.0" fill="#2563eb" text-anchor="middle" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">f(x, 5) = 5x² + 15</text>
+<line x1="70.0" y1="268.0" x2="330.0" y2="268.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="70.0" y1="216.0" x2="330.0" y2="216.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="70.0" y1="164.0" x2="330.0" y2="164.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="70.0" y1="112.0" x2="330.0" y2="112.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<rect x="70" y="60" width="260" height="260" fill="none" stroke="#111827" stroke-width="1"/>
+<line x1="70.0" y1="320.0" x2="70.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="70.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">0</text>
+<line x1="135.0" y1="320.0" x2="135.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="135.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1</text>
+<line x1="200.0" y1="320.0" x2="200.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="200.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2</text>
+<line x1="265.0" y1="320.0" x2="265.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="265.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<line x1="330.0" y1="320.0" x2="330.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="330.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<line x1="65.0" y1="320.0" x2="70.0" y2="320.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="324.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">0</text>
+<line x1="65.0" y1="268.0" x2="70.0" y2="268.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="272.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">20</text>
+<line x1="65.0" y1="216.0" x2="70.0" y2="216.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="220.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">40</text>
+<line x1="65.0" y1="164.0" x2="70.0" y2="164.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="168.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">60</text>
+<line x1="65.0" y1="112.0" x2="70.0" y2="112.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="116.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">80</text>
+<line x1="65.0" y1="60.0" x2="70.0" y2="60.0" stroke="#111827" stroke-width="1.0"/>
+<text x="62.0" y="64.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">100</text>
+<text x="200.0" y="358.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">x</text>
+<text x="32" y="190.0" text-anchor="middle" font-size="14" font-weight="bold" fill="#111827" transform="rotate(-90 32 190.0)">f</text>
+<polyline points="70.0,281.0 72.6,281.0 75.2,280.9 77.8,280.8 80.4,280.7 83.0,280.5 85.6,280.3 88.2,280.0 90.8,279.7 93.4,279.3 96.0,278.9 98.6,278.5 101.2,278.0 103.8,277.5 106.4,276.9 109.0,276.3 111.6,275.7 114.2,275.0 116.8,274.3 119.4,273.5 122.0,272.7 124.6,271.8 127.2,270.9 129.8,270.0 132.4,269.0 135.0,268.0 137.6,266.9 140.2,265.8 142.8,264.7 145.4,263.5 148.0,262.3 150.6,261.0 153.2,259.7 155.8,258.3 158.4,257.0 161.0,255.5 163.6,254.0 166.2,252.5 168.8,251.0 171.4,249.4 174.0,247.7 176.6,246.0 179.2,244.3 181.8,242.5 184.4,240.7 187.0,238.9 189.6,237.0 192.2,235.1 194.8,233.1 197.4,231.1 200.0,229.0 202.6,226.9 205.2,224.8 207.8,222.6 210.4,220.3 213.0,218.1 215.6,215.8 218.2,213.4 220.8,211.0 223.4,208.6 226.0,206.1 228.6,203.6 231.2,201.0 233.8,198.4 236.4,195.8 239.0,193.1 241.6,190.4 244.2,187.6 246.8,184.8 249.4,182.0 252.0,179.1 254.6,176.1 257.2,173.2 259.8,170.2 262.4,167.1 265.0,164.0 267.6,160.9 270.2,157.7 272.8,154.5 275.4,151.2 278.0,147.9 280.6,144.5 283.2,141.1 285.8,137.7 288.4,134.2 291.0,130.7 293.6,127.2 296.2,123.6 298.8,119.9 301.4,116.2 304.0,112.5 306.6,108.8 309.2,104.9 311.8,101.1 314.4,97.2 317.0,93.3 319.6,89.3 322.2,85.3 324.8,81.2 327.4,77.1 330.0,73.0" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<line x1="122.0" y1="291.4" x2="278.0" y2="166.6" stroke="#111827" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="200.0" y1="229.0" x2="265.0" y2="229.0" stroke="#111827" stroke-width="1.5"/>
+<line x1="265.0" y1="229.0" x2="265.0" y2="177.0" stroke="#dc2626" stroke-width="2.5"/>
+<text x="232.5" y="246.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Δx = 1</text>
+<text x="272.0" y="208.0" fill="#dc2626" text-anchor="start" font-size="15" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">+20</text>
+<circle cx="200.0" cy="229.0" r="4.5" fill="#111827" stroke="white" stroke-width="1.5"/>
+<text x="192.0" y="220.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">(2, 5): f = 35</text>
+<text x="78.0" y="78.0" fill="#2563eb" text-anchor="start" font-size="14" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">наклон ∂f/∂x = 20</text>
+<text x="540.0" y="24.0" fill="#111827" text-anchor="middle" font-size="15" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Двигаем только y (x = 2)</text>
+<text x="540.0" y="44.0" fill="#d97706" text-anchor="middle" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">f(2, y) = 7y</text>
+<line x1="410.0" y1="268.0" x2="670.0" y2="268.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="410.0" y1="216.0" x2="670.0" y2="216.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="410.0" y1="164.0" x2="670.0" y2="164.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<line x1="410.0" y1="112.0" x2="670.0" y2="112.0" stroke="#e5e7eb" stroke-width="1.0"/>
+<rect x="410" y="60" width="260" height="260" fill="none" stroke="#111827" stroke-width="1"/>
+<line x1="410.0" y1="320.0" x2="410.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="410.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<line x1="475.0" y1="320.0" x2="475.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="475.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<line x1="540.0" y1="320.0" x2="540.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="540.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">5</text>
+<line x1="605.0" y1="320.0" x2="605.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="605.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">6</text>
+<line x1="670.0" y1="320.0" x2="670.0" y2="325.0" stroke="#111827" stroke-width="1.0"/>
+<text x="670.0" y="339.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">7</text>
+<line x1="405.0" y1="320.0" x2="410.0" y2="320.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="324.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">0</text>
+<line x1="405.0" y1="268.0" x2="410.0" y2="268.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="272.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">20</text>
+<line x1="405.0" y1="216.0" x2="410.0" y2="216.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="220.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">40</text>
+<line x1="405.0" y1="164.0" x2="410.0" y2="164.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="168.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">60</text>
+<line x1="405.0" y1="112.0" x2="410.0" y2="112.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="116.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">80</text>
+<line x1="405.0" y1="60.0" x2="410.0" y2="60.0" stroke="#111827" stroke-width="1.0"/>
+<text x="402.0" y="64.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">100</text>
+<text x="540.0" y="358.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">y</text>
+<text x="372" y="190.0" text-anchor="middle" font-size="14" font-weight="bold" fill="#111827" transform="rotate(-90 372 190.0)">f</text>
+<polyline points="410.0,265.4 412.6,264.7 415.2,263.9 417.8,263.2 420.4,262.5 423.0,261.8 425.6,261.0 428.2,260.3 430.8,259.6 433.4,258.8 436.0,258.1 438.6,257.4 441.2,256.7 443.8,255.9 446.4,255.2 449.0,254.5 451.6,253.8 454.2,253.0 456.8,252.3 459.4,251.6 462.0,250.8 464.6,250.1 467.2,249.4 469.8,248.7 472.4,247.9 475.0,247.2 477.6,246.5 480.2,245.7 482.8,245.0 485.4,244.3 488.0,243.6 490.6,242.8 493.2,242.1 495.8,241.4 498.4,240.6 501.0,239.9 503.6,239.2 506.2,238.5 508.8,237.7 511.4,237.0 514.0,236.3 516.6,235.6 519.2,234.8 521.8,234.1 524.4,233.4 527.0,232.6 529.6,231.9 532.2,231.2 534.8,230.5 537.4,229.7 540.0,229.0 542.6,228.3 545.2,227.5 547.8,226.8 550.4,226.1 553.0,225.4 555.6,224.6 558.2,223.9 560.8,223.2 563.4,222.4 566.0,221.7 568.6,221.0 571.2,220.3 573.8,219.5 576.4,218.8 579.0,218.1 581.6,217.4 584.2,216.6 586.8,215.9 589.4,215.2 592.0,214.4 594.6,213.7 597.2,213.0 599.8,212.3 602.4,211.5 605.0,210.8 607.6,210.1 610.2,209.3 612.8,208.6 615.4,207.9 618.0,207.2 620.6,206.4 623.2,205.7 625.8,205.0 628.4,204.2 631.0,203.5 633.6,202.8 636.2,202.1 638.8,201.3 641.4,200.6 644.0,199.9 646.6,199.2 649.2,198.4 651.8,197.7 654.4,197.0 657.0,196.2 659.6,195.5 662.2,194.8 664.8,194.1 667.4,193.3 670.0,192.6" fill="none" stroke="#d97706" stroke-width="2.5"/>
+<line x1="462.0" y1="250.8" x2="618.0" y2="207.2" stroke="#111827" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="540.0" y1="229.0" x2="605.0" y2="229.0" stroke="#111827" stroke-width="1.5"/>
+<line x1="605.0" y1="229.0" x2="605.0" y2="210.8" stroke="#dc2626" stroke-width="2.5"/>
+<text x="572.5" y="246.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Δy = 1</text>
+<text x="612.0" y="224.9" fill="#dc2626" text-anchor="start" font-size="15" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">+7</text>
+<circle cx="540.0" cy="229.0" r="4.5" fill="#111827" stroke="white" stroke-width="1.5"/>
+<text x="532.0" y="220.0" fill="#111827" text-anchor="end" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">(2, 5): f = 35</text>
+<text x="418.0" y="78.0" fill="#d97706" text-anchor="start" font-size="14" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">наклон ∂f/∂y = 7</text>
+<text x="340.0" y="378.0" fill="#4b5563" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Пунктир — касательная: «сдвинули вход на Δ → f изменилась ≈ на наклон·Δ».</text>
+<text x="340.0" y="396.0" fill="#4b5563" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Одинаковый сдвиг по x меняет f в 20/7 ≈ 2.9 раза сильнее, чем такой же сдвиг по y.</text>
+</svg>
