@@ -15,7 +15,9 @@ import (
 //	|analytic − numeric| / max(|analytic| + |numeric|, 1e-3)
 //
 // and the place where it occurred. With float32 data use eps ≈ 1e-2 and expect
-// errors around 1e-3; errors ≳ 1e-1 mean a bug in some backward.
+// errors from ~1e-5 up to ~1e-2: the float32 rounding of a large loss, divided by 2ε,
+// is comparable to small individual gradients (TestGradCheckOps measures 4e-5…1.5e-2).
+// Errors ≳ 1e-1 mean a bug in some backward.
 func GradCheck(f func() *Var, params []*Var, eps float64) (maxRel float64, where string) {
 	for _, p := range params {
 		p.ZeroGrad()

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="430" viewBox="0 0 680 430" font-family="Helvetica, Arial, sans-serif" font-size="13">
+<defs></defs>
+<rect width="100%" height="100%" fill="white"/>
+<text x="340.0" y="24.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Gradient check: ошибка центральной разности в зависимости от ε</text>
+<text x="340.0" y="44.0" fill="#6b7280" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">cross-entropy для z = [2, 1, 0.1]; максимум относительной ошибки по трём логитам</text>
+<line x1="80.0" y1="60.0" x2="80.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="80.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁸</text>
+<line x1="150.0" y1="60.0" x2="150.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="150.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁷</text>
+<line x1="220.0" y1="60.0" x2="220.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="220.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁶</text>
+<line x1="290.0" y1="60.0" x2="290.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="290.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁵</text>
+<line x1="360.0" y1="60.0" x2="360.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="360.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁴</text>
+<line x1="430.0" y1="60.0" x2="430.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="430.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻³</text>
+<line x1="500.0" y1="60.0" x2="500.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="500.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻²</text>
+<line x1="570.0" y1="60.0" x2="570.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="570.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻¹</text>
+<line x1="640.0" y1="60.0" x2="640.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="640.0" y="358.0" fill="#6b7280" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1</text>
+<line x1="80.0" y1="340.0" x2="640.0" y2="340.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="344.0" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻¹²</text>
+<line x1="80.0" y1="293.3" x2="640.0" y2="293.3" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="297.3" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻¹⁰</text>
+<line x1="80.0" y1="246.7" x2="640.0" y2="246.7" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="250.7" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁸</text>
+<line x1="80.0" y1="200.0" x2="640.0" y2="200.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="204.0" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁶</text>
+<line x1="80.0" y1="153.3" x2="640.0" y2="153.3" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="157.3" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻⁴</text>
+<line x1="80.0" y1="106.7" x2="640.0" y2="106.7" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="110.7" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10⁻²</text>
+<line x1="80.0" y1="60.0" x2="640.0" y2="60.0" fill="none" stroke="#e5e7eb" stroke-width="1.0"/>
+<text x="74.0" y="64.0" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1</text>
+<rect x="80.0" y="60.0" width="560.0" height="280.0" rx="0.0" fill="none" stroke="#9ca3af" stroke-width="1.0"/>
+<text x="360.0" y="378.0" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">ε — шаг конечной разности</text>
+<text x="24.0" y="200.0" transform="rotate(-90 24.0 200.0)" fill="#111827" text-anchor="middle" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">относительная ошибка rel</text>
+<line x1="500.0" y1="60.0" x2="500.0" y2="340.0" fill="none" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="496.0" y="332.0" fill="#6b7280" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">ε = 10⁻² в тестах</text>
+<line x1="80.0" y1="90.4" x2="640.0" y2="90.4" fill="none" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="636.0" y="84.4" fill="#dc2626" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">порог TestGradCheckOps: 5·10⁻²</text>
+<polyline points="80.0,60.0 88.8,60.0 97.5,60.0 106.2,60.0 115.0,60.0 123.7,60.0 132.5,60.0 141.3,60.0 150.0,60.0 158.8,66.1 167.5,68.4 176.2,71.8 185.0,77.5 193.8,80.3 202.5,82.6 211.2,74.2 220.0,79.0 228.8,89.6 237.5,94.1 246.3,98.5 255.0,113.0 263.8,101.7 272.5,93.6 281.2,98.0 290.0,101.6 298.8,122.0 307.5,116.6 316.2,111.9 325.0,123.1 333.7,122.4 342.5,126.7 351.3,129.6 360.0,130.6 368.8,136.6 377.5,130.4 386.3,145.6 395.0,147.6 403.8,148.5 412.5,145.0 421.2,150.7 430.0,153.1 438.8,151.0 447.5,173.8 456.2,159.0 465.0,167.1 473.8,183.9 482.5,166.1 491.2,175.7 500.0,182.7 508.8,174.0 517.5,171.0 526.2,163.9 535.0,158.7 543.8,152.5 552.5,146.8 561.2,141.0 570.0,135.1 578.8,129.3 587.5,123.5 596.2,117.7 605.0,111.9 613.8,106.1 622.5,100.3 631.2,94.7 640.0,89.1" fill="none" stroke="#d97706" stroke-width="2.0" stroke-linejoin="round"/>
+<circle cx="473.8" cy="183.9" r="4.5" fill="#d97706" stroke="white" stroke-width="1.5"/>
+<polyline points="80.0,241.5 88.8,240.7 97.5,236.0 106.2,252.4 115.0,245.4 123.7,256.5 132.5,250.3 141.3,258.4 150.0,258.8 158.8,251.9 167.5,258.5 176.2,256.4 185.0,271.0 193.8,261.9 202.5,268.3 211.2,275.8 220.0,280.4 228.8,284.4 237.5,296.1 246.3,298.5 255.0,288.5 263.8,293.7 272.5,302.1 281.2,302.7 290.0,294.2 298.8,304.5 307.5,307.6 316.2,313.0 325.0,300.0 333.7,293.7 342.5,286.4 351.3,281.4 360.0,275.0 368.8,269.2 377.5,263.4 386.3,257.6 395.0,251.8 403.8,246.0 412.5,240.1 421.2,234.3 430.0,228.5 438.8,222.6 447.5,216.8 456.2,211.0 465.0,205.1 473.8,199.3 482.5,193.5 491.2,187.6 500.0,181.8 508.8,176.0 517.5,170.1 526.2,164.3 535.0,158.5 543.8,152.6 552.5,146.8 561.2,141.0 570.0,135.1 578.8,129.3 587.5,123.5 596.2,117.7 605.0,111.9 613.8,106.1 622.5,100.3 631.2,94.7 640.0,89.1" fill="none" stroke="#2563eb" stroke-width="2.0" stroke-linejoin="round"/>
+<circle cx="316.2" cy="313.0" r="4.5" fill="#2563eb" stroke="white" stroke-width="1.5"/>
+<text x="465.8" y="201.9" fill="#d97706" text-anchor="end" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">минимум: ε ≈ 4·10⁻³, rel ≈ 5·10⁻⁶</text>
+<text x="316.2" y="333.0" fill="#2563eb" text-anchor="middle" font-size="11" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">минимум: ε ≈ 2·10⁻⁵, rel ≈ 10⁻¹¹</text>
+<text x="113.4" y="236.6" fill="#2563eb" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">округление ∝ 1/ε</text>
+<text x="512.3" y="193.0" fill="#2563eb" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">усечение ∝ ε²</text>
+<line x1="150.0" y1="410.0" x2="178.0" y2="410.0" fill="none" stroke="#d97706" stroke-width="2.0"/>
+<text x="184.0" y="414.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">float32: autograd.Var + GradCheck (как в тестах)</text>
+<line x1="470.0" y1="410.0" x2="498.0" y2="410.0" fill="none" stroke="#2563eb" stroke-width="2.0"/>
+<text x="504.0" y="414.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">float64: autograd.Scalar</text>
+</svg>

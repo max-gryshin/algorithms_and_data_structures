@@ -4,3 +4,6 @@ downloads/
 runs/
 *.bin
 *.ckpt
+
+# Large local corpus built from data/<category>/ books (155 MB, over the GitHub 100 MB limit).
+corpus_large.txt
