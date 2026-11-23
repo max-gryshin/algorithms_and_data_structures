@@ -64,8 +64,8 @@ func l03LMHeadGraph() *canvas {
 	return c
 }
 
-// l03MatMulGrad: the 2×2 example of section 5 — where the 11 in ∂L/∂A comes from and how
-// the formula G·Bᵀ is recovered from shapes. All numbers come from autograd.MatMul.
+// l03MatMulGrad: the 2×2 example of section 5 — where the 11 in ∂L/∂X comes from and how
+// the formula G·Wᵀ is recovered from shapes. All numbers come from autograd.MatMul.
 func l03MatMulGrad() *canvas {
 	a := autograd.Param(tensor.FromSlice([]float32{1, 2, 3, 4}, 2, 2))
 	b := autograd.Param(tensor.FromSlice([]float32{5, 6, 7, 8}, 2, 2))
@@ -84,48 +84,48 @@ func l03MatMulGrad() *canvas {
 	)
 	c := newCanvas(680, 430)
 
-	// Forward row: a₁₁ feeds c₁₁ (times b₁₁) and c₁₂ (times b₁₂).
+	// Forward row: x₁₁ feeds z₁₁ (times w₁₁) and z₁₂ (times w₁₂).
 	c.matrix(xA, y1, s, A, func(i, j int) string { return pick(i == 0 && j == 0, strong) })
 	c.matrix(xB, y1, s, B, func(i, j int) string { return pick(i == 0, light) })
 	c.matrix(xC, y1, s, C, func(i, j int) string { return pick(i == 0, light) })
 	c.text(150, y1+s+5, "·", font{anchor: "middle", size: 20})
 	c.text(282, y1+s+6, "=", font{anchor: "middle", size: 18})
-	c.text(xA+s, y1+2*s+22, "A", font{anchor: "middle", bold: true})
-	c.text(xB+s, y1+2*s+22, "B", font{anchor: "middle", bold: true})
-	c.text(xC+s, y1+2*s+22, "C = A·B", font{anchor: "middle", bold: true})
+	c.text(xA+s, y1+2*s+22, "X", font{anchor: "middle", bold: true})
+	c.text(xB+s, y1+2*s+22, "W", font{anchor: "middle", bold: true})
+	c.text(xC+s, y1+2*s+22, "Z = X·W", font{anchor: "middle", bold: true})
 	arc := pen{color: orange, width: 1.8}
 	c.curveArrow(xA+s/2, y1, 190, 20, xC+s/2, y1, arc)
 	c.curveArrow(xA+s/2, y1, 210, -6, xC+1.5*s, y1, arc)
-	c.text(190, 76, fmt.Sprintf("×b₁₁ = %g", B[0][0]), font{anchor: "middle", color: orange})
-	c.text(210, 34, fmt.Sprintf("×b₁₂ = %g", B[0][1]), font{anchor: "middle", color: orange})
+	c.text(190, 76, fmt.Sprintf("×w₁₁ = %g", B[0][0]), font{anchor: "middle", color: orange})
+	c.text(210, 34, fmt.Sprintf("×w₁₂ = %g", B[0][1]), font{anchor: "middle", color: orange})
 
 	tx := 420.0
 	c.text(tx, 100, "Forward", font{bold: true})
-	c.text(tx, 122, fmt.Sprintf("a₁₁ входит в c₁₁ (×%g) и в c₁₂ (×%g).", B[0][0], B[0][1]), font{size: 12})
-	c.text(tx, 142, "L = сумма C ⇒ G = ∂L/∂C — все единицы.", font{size: 12})
-	c.text(tx, 164, fmt.Sprintf("∂L/∂a₁₁ = 1·%g + 1·%g = %g", B[0][0], B[0][1], dA[0][0]), font{bold: true, color: orange})
+	c.text(tx, 122, fmt.Sprintf("x₁₁ входит в z₁₁ (×%g) и в z₁₂ (×%g).", B[0][0], B[0][1]), font{size: 12})
+	c.text(tx, 142, "L = сумма Z ⇒ G = ∂L/∂Z — все единицы.", font{size: 12})
+	c.text(tx, 164, fmt.Sprintf("∂L/∂x₁₁ = 1·%g + 1·%g = %g", B[0][0], B[0][1], dA[0][0]), font{bold: true, color: orange})
 
-	// Backward row: the same 11 as (row 1 of G) · (column 1 of Bᵀ).
+	// Backward row: the same 11 as (row 1 of G) · (column 1 of Wᵀ).
 	c.matrix(xA, y2, s, G, func(i, j int) string { return pick(i == 0, lightRed) })
 	c.matrix(xB, y2, s, Bt, func(i, j int) string { return pick(j == 0, lightRed) })
 	c.matrix(xC, y2, s, dA, func(i, j int) string { return pick(i == 0 && j == 0, strongRed) })
 	c.text(150, y2+s+5, "·", font{anchor: "middle", size: 20})
 	c.text(282, y2+s+6, "=", font{anchor: "middle", size: 18})
-	c.text(xA+s, y2+2*s+22, "G = ∂L/∂C", font{anchor: "middle", bold: true})
-	c.text(xB+s, y2+2*s+22, "Bᵀ", font{anchor: "middle", bold: true})
-	c.text(xC+s, y2+2*s+22, "∂L/∂A = G·Bᵀ", font{anchor: "middle", bold: true})
+	c.text(xA+s, y2+2*s+22, "G = ∂L/∂Z", font{anchor: "middle", bold: true})
+	c.text(xB+s, y2+2*s+22, "Wᵀ", font{anchor: "middle", bold: true})
+	c.text(xC+s, y2+2*s+22, "∂L/∂X = G·Wᵀ", font{anchor: "middle", bold: true})
 
 	c.text(tx, 240, "Backward", font{bold: true})
-	c.text(tx, 262, "(G·Bᵀ)₁₁ = строка 1 из G", font{size: 12})
-	c.text(tx, 280, fmt.Sprintf("· столбец 1 из Bᵀ = 1·%g + 1·%g = %g ✓", Bt[0][0], Bt[1][0], dA[0][0]), font{size: 12, color: red})
-	c.text(tx, 302, "Столбец 1 из Bᵀ — это строка 1 из B:", font{size: 12, color: muted})
+	c.text(tx, 262, "(G·Wᵀ)₁₁ = строка 1 из G", font{size: 12})
+	c.text(tx, 280, fmt.Sprintf("· столбец 1 из Wᵀ = 1·%g + 1·%g = %g ✓", Bt[0][0], Bt[1][0], dA[0][0]), font{size: 12, color: red})
+	c.text(tx, 302, "Столбец 1 из Wᵀ — это строка 1 из W:", font{size: 12, color: muted})
 	c.text(tx, 320, "те же множители, что на стрелках сверху.", font{size: 12, color: muted})
 
 	// Shapes: the inner dimensions (orange) must match and cancel.
 	f := font{size: 14}
 	c.text(40, 376, "Формы:", f)
-	c.spans(100, 376, f, span{"∂L/∂A = G·Bᵀ = (n×", ""}, span{"p", orange}, span{")·(", ""}, span{"p", orange}, span{"×k) = n×k — как у A ✓", ""})
-	c.spans(100, 398, f, span{"∂L/∂B = Aᵀ·G = (k×", ""}, span{"n", orange}, span{")·(", ""}, span{"n", orange}, span{"×p) = k×p — как у B ✓", ""})
+	c.spans(100, 376, f, span{"∂L/∂X = G·Wᵀ = (n×", ""}, span{"p", orange}, span{")·(", ""}, span{"p", orange}, span{"×k) = n×k — как у X ✓", ""})
+	c.spans(100, 398, f, span{"∂L/∂W = Xᵀ·G = (k×", ""}, span{"n", orange}, span{")·(", ""}, span{"n", orange}, span{"×p) = k×p — как у W ✓", ""})
 	c.text(40, 420, "Внутренние размеры (оранжевые) обязаны совпасть — так формулу восстанавливают по формам.", font{size: 12, color: muted})
 	return c
 }

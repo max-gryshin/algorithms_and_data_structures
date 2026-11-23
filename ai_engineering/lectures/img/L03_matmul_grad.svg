@@ -27,17 +27,17 @@
 <text x="360.0" y="155.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">50</text>
 <text x="150.0" y="135.0" fill="#111827" text-anchor="middle" font-size="20" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">·</text>
 <text x="282.0" y="136.0" fill="#111827" text-anchor="middle" font-size="18" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">=</text>
-<text x="80.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">A</text>
-<text x="210.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">B</text>
-<text x="340.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">C = A·B</text>
+<text x="80.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">X</text>
+<text x="210.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">W</text>
+<text x="340.0" y="192.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Z = X·W</text>
 <path d="M60.0,90.0 Q190.0,20.0 320.0,90.0" fill="none" stroke="#d97706" stroke-width="1.8" marker-end="url(#ad97706)"/>
 <path d="M60.0,90.0 Q210.0,-6.0 360.0,90.0" fill="none" stroke="#d97706" stroke-width="1.8" marker-end="url(#ad97706)"/>
-<text x="190.0" y="76.0" fill="#d97706" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">×b₁₁ = 5</text>
-<text x="210.0" y="34.0" fill="#d97706" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">×b₁₂ = 6</text>
+<text x="190.0" y="76.0" fill="#d97706" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">×w₁₁ = 5</text>
+<text x="210.0" y="34.0" fill="#d97706" text-anchor="middle" font-size="13" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">×w₁₂ = 6</text>
 <text x="420.0" y="100.0" fill="#111827" text-anchor="start" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Forward</text>
-<text x="420.0" y="122.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">a₁₁ входит в c₁₁ (×5) и в c₁₂ (×6).</text>
-<text x="420.0" y="142.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">L = сумма C ⇒ G = ∂L/∂C — все единицы.</text>
-<text x="420.0" y="164.0" fill="#d97706" text-anchor="start" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">∂L/∂a₁₁ = 1·5 + 1·6 = 11</text>
+<text x="420.0" y="122.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">x₁₁ входит в z₁₁ (×5) и в z₁₂ (×6).</text>
+<text x="420.0" y="142.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">L = сумма Z ⇒ G = ∂L/∂Z — все единицы.</text>
+<text x="420.0" y="164.0" fill="#d97706" text-anchor="start" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">∂L/∂x₁₁ = 1·5 + 1·6 = 11</text>
 <rect x="40.0" y="230.0" width="40.0" height="40.0" rx="0.0" fill="#fee2e2" stroke="#9ca3af" stroke-width="1.0"/>
 <text x="60.0" y="255.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1</text>
 <rect x="80.0" y="230.0" width="40.0" height="40.0" rx="0.0" fill="#fee2e2" stroke="#9ca3af" stroke-width="1.0"/>
@@ -64,16 +64,16 @@
 <text x="360.0" y="295.0" fill="#111827" text-anchor="middle" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">15</text>
 <text x="150.0" y="275.0" fill="#111827" text-anchor="middle" font-size="20" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">·</text>
 <text x="282.0" y="276.0" fill="#111827" text-anchor="middle" font-size="18" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">=</text>
-<text x="80.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">G = ∂L/∂C</text>
-<text x="210.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Bᵀ</text>
-<text x="340.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">∂L/∂A = G·Bᵀ</text>
+<text x="80.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">G = ∂L/∂Z</text>
+<text x="210.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Wᵀ</text>
+<text x="340.0" y="332.0" fill="#111827" text-anchor="middle" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">∂L/∂X = G·Wᵀ</text>
 <text x="420.0" y="240.0" fill="#111827" text-anchor="start" font-size="13" font-weight="bold" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Backward</text>
-<text x="420.0" y="262.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">(G·Bᵀ)₁₁ = строка 1 из G</text>
-<text x="420.0" y="280.0" fill="#dc2626" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">· столбец 1 из Bᵀ = 1·5 + 1·6 = 11 ✓</text>
-<text x="420.0" y="302.0" fill="#6b7280" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Столбец 1 из Bᵀ — это строка 1 из B:</text>
+<text x="420.0" y="262.0" fill="#111827" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">(G·Wᵀ)₁₁ = строка 1 из G</text>
+<text x="420.0" y="280.0" fill="#dc2626" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">· столбец 1 из Wᵀ = 1·5 + 1·6 = 11 ✓</text>
+<text x="420.0" y="302.0" fill="#6b7280" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Столбец 1 из Wᵀ — это строка 1 из W:</text>
 <text x="420.0" y="320.0" fill="#6b7280" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">те же множители, что на стрелках сверху.</text>
 <text x="40.0" y="376.0" fill="#111827" text-anchor="start" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Формы:</text>
-<text x="100.0" y="376.0" fill="#111827" text-anchor="start" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke"><tspan fill="#111827">∂L/∂A = G·Bᵀ = (n×</tspan><tspan fill="#d97706">p</tspan><tspan fill="#111827">)·(</tspan><tspan fill="#d97706">p</tspan><tspan fill="#111827">×k) = n×k — как у A ✓</tspan></text>
-<text x="100.0" y="398.0" fill="#111827" text-anchor="start" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke"><tspan fill="#111827">∂L/∂B = Aᵀ·G = (k×</tspan><tspan fill="#d97706">n</tspan><tspan fill="#111827">)·(</tspan><tspan fill="#d97706">n</tspan><tspan fill="#111827">×p) = k×p — как у B ✓</tspan></text>
+<text x="100.0" y="376.0" fill="#111827" text-anchor="start" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke"><tspan fill="#111827">∂L/∂X = G·Wᵀ = (n×</tspan><tspan fill="#d97706">p</tspan><tspan fill="#111827">)·(</tspan><tspan fill="#d97706">p</tspan><tspan fill="#111827">×k) = n×k — как у X ✓</tspan></text>
+<text x="100.0" y="398.0" fill="#111827" text-anchor="start" font-size="14" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke"><tspan fill="#111827">∂L/∂W = Xᵀ·G = (k×</tspan><tspan fill="#d97706">n</tspan><tspan fill="#111827">)·(</tspan><tspan fill="#d97706">n</tspan><tspan fill="#111827">×p) = k×p — как у W ✓</tspan></text>
 <text x="40.0" y="420.0" fill="#6b7280" text-anchor="start" font-size="12" font-weight="normal" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Внутренние размеры (оранжевые) обязаны совпасть — так формулу восстанавливают по формам.</text>
 </svg>
