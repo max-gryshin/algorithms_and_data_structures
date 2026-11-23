@@ -11,11 +11,11 @@ func TestBfsTopologicalSort(t *testing.T) {
 		res   []int
 	}{{
 		graph: map[int][]int{
-			0: []int{1, 2},
-			1: []int{3},
-			2: []int{3},
-			3: []int{4},
-			4: []int{},
+			0: {1, 2},
+			1: {3},
+			2: {3},
+			3: {4},
+			4: {},
 		},
 		res: []int{0, 1, 2, 3, 4},
 	}}
@@ -35,11 +35,11 @@ func TestDfsTopologicalSort(t *testing.T) {
 		err   error
 	}{{
 		graph: map[int][]int{
-			0: []int{1, 2},
-			1: []int{3},
-			2: []int{3},
-			3: []int{4},
-			4: []int{},
+			0: {1, 2},
+			1: {3},
+			2: {3},
+			3: {4},
+			4: {},
 		},
 		res: []int{0, 2, 1, 3, 4},
 	}}

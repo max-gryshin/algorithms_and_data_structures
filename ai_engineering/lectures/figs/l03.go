@@ -304,6 +304,145 @@ func gradCheck64(z [3]float64, eps float64) float64 {
 	return worst
 }
 
+// l03GradDescentSteps: gradient descent on f = x² + 2y² from (1, 1) with η = 0.1 (section 3.3).
+// At the start a fan of directions shows that ∇f gives the fastest growth; each step goes the other way.
+func l03GradDescentSteps() *canvas {
+	const eta = 0.1
+	type point struct{ x, y, f, gx, gy float64 }
+	var path []point
+	x, y := 1.0, 1.0
+	for range 25 {
+		f, gx, gy := quadBowl(x, y)
+		path = append(path, point{x, y, f, gx, gy})
+		x, y = x-eta*gx, y-eta*gy
+	}
+
+	const (
+		left, top, size = 60.0, 30.0, 340.0
+		lo, hi          = -0.2, 1.5
+	)
+	px := func(x float64) float64 { return left + (x-lo)/(hi-lo)*size }
+	py := func(y float64) float64 { return top + (hi-y)/(hi-lo)*size }
+	inside := func(x, y float64) bool { return x >= lo && x <= hi && y >= lo && y <= hi }
+
+	c := newCanvas(740, 430)
+	for v := 0.0; v <= 1.41; v += 0.2 {
+		c.line(px(v), top, px(v), top+size, pen{color: "#f3f4f6", width: 1})
+		c.line(left, py(v), left+size, py(v), pen{color: "#f3f4f6", width: 1})
+		c.text(px(v), top+size+16, fmt.Sprintf("%.1f", v), font{anchor: "middle", size: 11, color: muted})
+		c.text(left-6, py(v)+4, fmt.Sprintf("%.1f", v), font{anchor: "end", size: 11, color: muted})
+	}
+	c.rect(left, top, size, size, pen{color: cellLine, width: 1})
+	c.text(left+size/2, top+size+36, "x", font{anchor: "middle", size: 14, bold: true})
+	c.text(22, top+size/2+4, "y", font{anchor: "middle", size: 14, bold: true})
+
+	// Level lines x² + 2y² = f through the first four points, clipped to the plot.
+	for _, p := range path[:4] {
+		var seg [][2]float64
+		flush := func() {
+			if len(seg) > 1 {
+				c.polyline(seg, pen{color: cellLine, width: 1, dash: true})
+			}
+			seg = nil
+		}
+		for k := 0; k <= 360; k++ {
+			t := float64(k) * math.Pi / 180
+			ex, ey := math.Sqrt(p.f)*math.Cos(t), math.Sqrt(p.f/2)*math.Sin(t)
+			if !inside(ex, ey) {
+				flush()
+				continue
+			}
+			seg = append(seg, [2]float64{px(ex), py(ey)})
+		}
+		flush()
+	}
+
+	// Fan at the start: how much f grows after a 0.01 move along each unit direction.
+	p0 := path[0]
+	norm := math.Hypot(p0.gx, p0.gy)
+	fan := []struct {
+		ux, uy  float64
+		dx, dy  float64 // label offset from the arrow tip, px
+		anchor  string
+		color   string
+		gradDir bool
+	}{
+		{1, 0, 0, -7, "end", muted, false},
+		{math.Sqrt2 / 2, math.Sqrt2 / 2, 6, 4, "start", muted, false},
+		{0, 1, -6, 0, "end", muted, false},
+		{p0.gx / norm, p0.gy / norm, 0, -8, "middle", red, true},
+	}
+	const reach = 0.42
+	for _, d := range fan {
+		f, _, _ := quadBowl(p0.x+0.01*d.ux, p0.y+0.01*d.uy)
+		tx, ty := px(p0.x+reach*d.ux), py(p0.y+reach*d.uy)
+		width := 1.3
+		if d.gradDir {
+			width = 2.5
+		}
+		c.arrow(px(p0.x), py(p0.y), tx, ty, pen{color: d.color, width: width})
+		c.text(tx+d.dx, ty+d.dy, fmt.Sprintf("+%.4f", f-p0.f), font{anchor: d.anchor, size: 11, color: d.color, bold: d.gradDir})
+	}
+
+	// Descent: the steps −η∇f, the first three labelled, the rest fading towards the minimum.
+	for i := 1; i < len(path); i++ {
+		a, b := path[i-1], path[i]
+		if i <= 3 {
+			c.arrow(px(a.x), py(a.y), px(b.x), py(b.y), pen{color: blue, width: 2.2})
+		} else {
+			c.line(px(a.x), py(a.y), px(b.x), py(b.y), pen{color: blue, width: 1, dash: true})
+		}
+	}
+	for i := len(path) - 1; i >= 0; i-- {
+		p := path[i]
+		r, color := 4.5, blue
+		if i > 3 {
+			r = 2.5
+		}
+		c.dot(px(p.x), py(p.y), r, color)
+		if i <= 3 {
+			c.text(px(p.x)+8, py(p.y)+16, fmt.Sprintf("%d: f = %.3g", i, p.f), font{size: 11, bold: true})
+		}
+	}
+	c.dot(px(0), py(0), 5, ink)
+	c.text(px(0)+8, py(0)+18, "минимум f = 0", font{size: 11})
+
+	legend := []struct{ text, color string }{
+		{"f(x, y) = x² + 2y², шаг η = 0.1", ink},
+		{"Пунктир: линии уровня через точки 0–3.", muted},
+		{"", ""},
+		{"Из точки 0 сдвигаемся на 0.01 в разные", ink},
+		{"стороны; числа — насколько выросла f.", ink},
+		{"Серые: оси x, y и диагональ.", muted},
+		{fmt.Sprintf("Красная: ∇f = (%g, %g), рост максимален.", p0.gx, p0.gy), red},
+		{"", ""},
+		{"Синие: шаги −η·∇f, против градиента,", blue},
+		{"туда, где f убывает быстрее всего.", blue},
+		{"В каждой точке градиент новый, и шаг", ink},
+		{"снова идёт поперёк линии уровня.", ink},
+		{"", ""},
+		{"Шаги укорачиваются сами: у минимума", ink},
+		{"‖∇f‖ → 0. По y путь сходится быстрее", ink},
+		{"(×0.6 за шаг против ×0.8 по x).", ink},
+	}
+	for i, l := range legend {
+		f := font{size: 12, color: l.color}
+		if i == 0 {
+			f.bold = true
+		}
+		c.text(450, 50+float64(i)*19, l.text, f)
+	}
+	return c
+}
+
+// quadBowl returns f = x² + 2y² and its gradient, computed by autograd.
+func quadBowl(x, y float64) (f, gx, gy float64) {
+	xs, ys := autograd.S(x), autograd.S(y)
+	out := xs.Pow(2).Add(autograd.S(2).Mul(ys.Pow(2)))
+	out.Backward()
+	return out.Data, xs.Grad, ys.Grad
+}
+
 func rows(t *tensor.Tensor) [][]float64 {
 	s := t.Shape()
 	out := make([][]float64, s[0])

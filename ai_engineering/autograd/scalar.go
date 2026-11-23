@@ -48,7 +48,9 @@ func (a *Scalar) Add(b *Scalar) *Scalar {
 	return out
 }
 
-// Mul: d(a·b)/da = b, d(a·b)/db = a — each input gets the other one times the upstream gradient.
+// Mul — each input gets the other one times the upstream gradient.
+// d(a·b)/da = b,
+// d(a·b)/db = a
 func (a *Scalar) Mul(b *Scalar) *Scalar {
 	out := newScalar(a.Data*b.Data, "*", a, b)
 	out.backward = func() {

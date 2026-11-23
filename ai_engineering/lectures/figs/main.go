@@ -19,6 +19,7 @@ var figures = map[string]func() *canvas{
 	"L03_matmul_grad.svg":     l03MatMulGrad,
 	"L03_softmax_ce_step.svg": l03SoftmaxCEStep,
 	"L03_gradcheck_eps.svg":   l03GradCheckEps,
+	"L03_gd_steps.svg":        l03GradDescentSteps,
 }
 
 func main() {
